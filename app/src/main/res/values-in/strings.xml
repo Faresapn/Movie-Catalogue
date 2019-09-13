@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">katalog movie</string>
+    <string name="hello_world">Halo Dunia</string>
+    <string name="action_settings">Pengaturan Bahasa</string>
+    <string name="film">Film</string>
+    <string name="tv_show">siaran tv</string>
+    <string name="favorite">Faforit</string>
+    <string name="add">Sukses</string>
+    <string name="addf">gagal</string>
+    <string name="movie_and_tv_show">film dan acara tv</string>
+</resources>
