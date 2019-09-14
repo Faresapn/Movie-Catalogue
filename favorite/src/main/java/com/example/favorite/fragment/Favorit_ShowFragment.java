@@ -58,16 +58,14 @@ public class Favorit_ShowFragment extends Fragment  {
         return v;
     }
 
-
+    @SuppressLint("StaticFieldLeak")
     private class LoadTvFav extends AsyncTask<Void,Void,Cursor> {
-        private Cursor mcursor;
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
 
-
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         protected Cursor doInBackground(Void... voids) {
             Log.d("background", String.valueOf(CONTENT_URI_TV));
@@ -77,9 +75,8 @@ public class Favorit_ShowFragment extends Fragment  {
         @Override
         protected void onPostExecute(Cursor cursor) {
             super.onPostExecute(cursor);
-            mcursor = cursor;
-            Log.d("cursor", String.valueOf(mcursor));
-            tvFavAdapter.setmItems(mcursor);
+            mList = cursor;
+            tvFavAdapter.setmMovieTvItems(mList);
             tvFavAdapter.notifyDataSetChanged();
         }
 

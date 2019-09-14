@@ -66,7 +66,7 @@
                 android:id="@+id/txt_realis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
+                android:layout_marginLeft="28dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/tahun_rilis"
                 android:textSize="12sp"
@@ -79,9 +79,9 @@
                 android:id="@+id/txt_det"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
+                android:layout_marginLeft="28dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="15dp"
                 android:lineSpacingMultiplier="1"
                 android:text="@string/detail"
@@ -108,13 +108,13 @@
                 app:layout_constraintStart_toEndOf="@+id/linearLayout"
                 app:layout_constraintTop_toTopOf="@+id/img_film"
                 app:layout_constraintVertical_bias="0.631"
-                app:srcCompat="@drawable/ic_favorite_border_black" />
+                app:srcCompat="@drawable/ic_is_favorite" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="19dp"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"

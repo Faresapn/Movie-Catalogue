@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.favorite.DetailActivity;
-import com.example.favorite.Items;
+import com.example.favorite.model.Items;
 import com.example.favorite.R;
 
 import com.squareup.picasso.Picasso;
@@ -28,9 +28,9 @@ public class MovieTvFavAdapter extends RecyclerView.Adapter<MovieTvFavAdapter.Mo
     public MovieTvFavAdapter(Context context) {
         this.context = context;
     }
-    public void setmMovieTvItems(Cursor items) {
+    public void setmMovieTvItems(Cursor movieTvFavItems) {
 
-        this.cursor = items;
+        this.cursor = movieTvFavItems;
     }
     @NonNull
     @Override
@@ -48,7 +48,7 @@ public class MovieTvFavAdapter extends RecyclerView.Adapter<MovieTvFavAdapter.Mo
     @Override
     public void onBindViewHolder(@NonNull final MovieTvFavAdapterViewHolder holder, int position) {
         final Items movieTvFavItems = getItems(position);
-        Picasso.with(context).load("https://image.tmdb.org/t/p/w500"+movieTvFavItems.getPhoto()).into(holder.imageView);
+        Picasso.with(context).load("https://image.tmdb.org/t/p/w500"+movieTvFavItems.getPhoto()).into(holder.mCircleImageView);
         holder.title.setText(movieTvFavItems.getTitle_film());
         holder.info.setText(movieTvFavItems.getInfo_film());
         holder.itemView.setOnClickListener(view -> {
@@ -60,15 +60,16 @@ public class MovieTvFavAdapter extends RecyclerView.Adapter<MovieTvFavAdapter.Mo
 
     @Override
     public int getItemCount() {
-       return 0;
+        if (cursor==null)return 0;
+        return cursor.getCount();
     }
 
     public class MovieTvFavAdapterViewHolder extends RecyclerView.ViewHolder {
         TextView title,info;
-        ImageView imageView;
+        ImageView mCircleImageView;
         public MovieTvFavAdapterViewHolder(@NonNull final View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.item_movie_poster);
+            mCircleImageView = itemView.findViewById(R.id.item_movie_poster);
             title = itemView.findViewById(R.id.item_movie_title);
             info = itemView.findViewById(R.id.releas_show);
             itemView.setOnClickListener(view -> itemView.getContext().startActivity(new Intent(itemView.getContext(), DetailActivity.class)));

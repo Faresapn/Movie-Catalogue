@@ -13,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.favorite.DetailActivity;
-import com.example.favorite.Items;
+import com.example.favorite.model.Items;
 import com.example.favorite.R;
+import com.example.favorite.model.ItemsTv;
 import com.squareup.picasso.Picasso;
+
 
 import static com.example.favorite.DetailActivity.EXTRA_TV;
 
@@ -34,7 +36,7 @@ public class TVFavAdapter extends RecyclerView.Adapter<TVFavAdapter.TvFavAdapter
     public TVFavAdapter(Context context) {
         this.context = context;
     }
-    public void setmItems(Cursor movieTvFavItems) {
+    public void setmMovieTvItems(Cursor movieTvFavItems) {
 
         this.cursor = movieTvFavItems;
     }
@@ -49,7 +51,7 @@ public class TVFavAdapter extends RecyclerView.Adapter<TVFavAdapter.TvFavAdapter
 
     @Override
     public void onBindViewHolder(@NonNull final TVFavAdapter.TvFavAdapterViewHolder holder, int position) {
-        final Items items = getItems(position);
+        final ItemsTv items = getItems(position);
         Picasso.with(context).load("https://image.tmdb.org/t/p/w500"+items.getPhoto()).into(holder.imageView);
         holder.title.setText(items.getTitle_film());
         holder.info.setText(items.getInfo_film());
@@ -59,11 +61,11 @@ public class TVFavAdapter extends RecyclerView.Adapter<TVFavAdapter.TvFavAdapter
             holder.itemView.getContext().startActivity(intent);
         });
     }
-    private Items getItems(int position){
+    private ItemsTv getItems(int position){
         if (!cursor.moveToPosition(position)){
             throw new IllegalStateException("Invalid");
         }
-        return new Items(cursor);
+        return new ItemsTv(cursor);
     }
     @Override
     public int getItemCount() {

@@ -61,24 +61,24 @@ public class TvHelper  {
         ArrayList<Items> movieTvItems = new ArrayList<>();
         Cursor cursor = database.query(DATABASE_TABLE,null,null,null,null,null, DbContract.TvEntry._ID ,null);
         cursor.moveToFirst();
-        Items mMovieTvItems;
+        Items items;
         if (cursor.getCount() > 0 ){
             do {
-                mMovieTvItems = new Items();
-                mMovieTvItems.setId(cursor.getInt(cursor.getColumnIndexOrThrow(DbContract.TvEntry._ID)));
-                mMovieTvItems.setTitle_film (cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_JUDUL)));
-                mMovieTvItems.setInfo_film(cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_OVERVIEW)));
-                mMovieTvItems.setPhoto(cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_POSTER)));
-                 mMovieTvItems.setDesc_film  (cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_RELEASE)));
-                mMovieTvItems.setRate       (cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_RATING)));
-                mMovieTvItems.setRating_bar(cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_RATINGBAR)));
-                Log.d("overview",cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_OVERVIEW)));
-                movieTvItems.add(mMovieTvItems);
+                items = new Items();
+                items.setId        (cursor.getInt(cursor.getColumnIndexOrThrow   (DbContract.TvEntry._ID)));
+                items.setTitle_film(cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_JUDUL)));
+                items.setDesc_film (cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_RELEASE)));
+                items.setPhoto     (cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_POSTER)));
+                items.setInfo_film (cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_OVERVIEW)));
+                items.setRate      (cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_RATING)));
+                items.setRating_bar(cursor.getString(cursor.getColumnIndexOrThrow(DbContract.TvEntry.COLUMN_RATINGBAR)));
+                movieTvItems.add(items);
                 cursor.moveToNext();
             }while (!cursor.isAfterLast());
         }
         cursor.close();
         return movieTvItems;
+
     }
     public Boolean getOne(String name){
         String querySingleRecord = "SELECT * FROM " + DATABASE_TABLE + " WHERE " +DbContract.TvEntry.COLUMN_JUDUL+ " " + " LIKE " +"'"+name+"'" ;

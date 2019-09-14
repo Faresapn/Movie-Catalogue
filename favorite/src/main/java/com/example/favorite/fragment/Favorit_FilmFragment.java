@@ -2,41 +2,30 @@ package com.example.favorite.fragment;
 
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.database.ContentObserver;
 import android.database.Cursor;
 
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.favorite.DetailActivity;
-import com.example.favorite.Items;
 import com.example.favorite.R;
 import com.example.favorite.adapter.MovieTvFavAdapter;
-import com.example.favorite.adapter.TVFavAdapter;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.Objects;
 
 import static com.example.favorite.DbContract.MovieEntry.CONTENT_URI;
-import static com.example.favorite.DbContract.TvEntry.CONTENT_URI_TV;
 
 
 /**
@@ -44,7 +33,7 @@ import static com.example.favorite.DbContract.TvEntry.CONTENT_URI_TV;
  */
 public class Favorit_FilmFragment extends Fragment  {
     MovieTvFavAdapter mMovieTvFavAdapter;
-
+    Cursor mList;
     RecyclerView mRecyclerView;
     public Favorit_FilmFragment() {
         // Required empty public constructor
@@ -59,7 +48,7 @@ public class Favorit_FilmFragment extends Fragment  {
         mRecyclerView = v.findViewById(R.id.rv_movie);
 
         mMovieTvFavAdapter = new MovieTvFavAdapter(getContext());
-        Log.d("creattemovie", String.valueOf(mMovieTvFavAdapter));
+        Log.d("creattemovie","oncreate");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));
         mRecyclerView.setAdapter(mMovieTvFavAdapter);
         new LoadMovieFav().execute();
@@ -68,8 +57,6 @@ public class Favorit_FilmFragment extends Fragment  {
 
     @SuppressLint("StaticFieldLeak")
     public class LoadMovieFav extends AsyncTask<Void,Void,Cursor>{
-        private Cursor mcursor;
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -85,15 +72,11 @@ public class Favorit_FilmFragment extends Fragment  {
         @Override
         protected void onPostExecute(Cursor cursor) {
             super.onPostExecute(cursor);
-            mcursor = cursor;
-
-            mMovieTvFavAdapter.setmMovieTvItems(mcursor);
-            Log.d("cursor", String.valueOf(mcursor));
+            mList = cursor;
+            mMovieTvFavAdapter.setmMovieTvItems(mList);
             mMovieTvFavAdapter.notifyDataSetChanged();
 
         }
     }
-
-
 
 }

@@ -1,18 +1,18 @@
-package com.example.favorite;
+package com.example.favorite.model;
 
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
+
+import com.example.favorite.DbContract;
 
 import static com.example.favorite.DbContract.getColoumnInt;
 import static com.example.favorite.DbContract.getColoumnString;
 
-public class Items implements Parcelable {
+public class ItemsTv implements Parcelable {
     int id;
     String  Desc_film,Title_film,Info_film,photo,Rating_bar,Rate, type;
-
-    public Items() {
+    public ItemsTv() {
 
     }
 
@@ -102,7 +102,7 @@ public class Items implements Parcelable {
 
     }
 
-    protected Items(Parcel in) {
+    protected ItemsTv(Parcel in) {
         this.id = in.readInt();
         this.Desc_film = in.readString();
         this.Title_film = in.readString();
@@ -113,15 +113,15 @@ public class Items implements Parcelable {
         this.type = in.readString();
 
     }
-    public Items(Cursor cursor) {
+    public ItemsTv(Cursor cursor) {
 
-        this.id = getColoumnInt(cursor, DbContract.MovieEntry._ID);
-        this.Title_film = getColoumnString(cursor,  DbContract.MovieEntry.COLUMN_JUDUL);
-        this.photo = getColoumnString(cursor, DbContract.MovieEntry.COLUMN_POSTER);
-        this.Desc_film = getColoumnString(cursor, DbContract.MovieEntry.COLUMN_OVERVIEW);
-        this.Info_film = getColoumnString(cursor, DbContract.MovieEntry.COLUMN_RELEASE);
-        this.Rating_bar = getColoumnString(cursor, DbContract.MovieEntry.COLUMN_RATINGBAR);
-        this.Rate = getColoumnString(cursor, DbContract.MovieEntry.COLUMN_RATING);
+        this.id = getColoumnInt(cursor, DbContract.TvEntry._ID);
+        this.Title_film = getColoumnString(cursor,  DbContract.TvEntry.COLUMN_JUDUL);
+        this.photo = getColoumnString(cursor, DbContract.TvEntry.COLUMN_POSTER);
+        this.Desc_film = getColoumnString(cursor, DbContract.TvEntry.COLUMN_OVERVIEW);
+        this.Info_film = getColoumnString(cursor, DbContract.TvEntry.COLUMN_RELEASE);
+        this.Rating_bar = getColoumnString(cursor, DbContract.TvEntry.COLUMN_RATINGBAR);
+        this.Rate = getColoumnString(cursor, DbContract.TvEntry.COLUMN_RATING);
 
     }
 
@@ -137,4 +137,3 @@ public class Items implements Parcelable {
         }
     };
 }
-

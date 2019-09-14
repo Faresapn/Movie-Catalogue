@@ -1,37 +1,35 @@
-package com.example.submisi5.model.provider;
+package com.example.submisi5.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
-
 import android.net.Uri;
+import android.os.Build;
 
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.example.submisi5.database.DbContract;
 import com.example.submisi5.database.MovieHelper;
 import com.example.submisi5.database.TvHelper;
 
-
 import java.util.Objects;
 
-import static android.provider.SettingsSlicesContract.AUTHORITY;
+import static com.example.submisi5.database.DbContract.AUTHORITY;
 import static com.example.submisi5.database.DbContract.MovieEntry.CONTENT_URI;
 import static com.example.submisi5.database.DbContract.TABLE_MOVIE;
 import static com.example.submisi5.database.DbContract.TABLE_TV;
 import static com.example.submisi5.database.DbContract.TvEntry.CONTENT_URI_TV;
 
-public class Provider extends ContentProvider {
-    public static final  int MOVIE = 1;
-    public static final  int MOVIE_ID = 2;
 
-    public static final int TV = 10;
-    public static final int TV_ID=11;
+public class MovieTvProvider extends ContentProvider {
+    private static final  int MOVIE = 1;
+    private static final  int MOVIE_ID = 2;
+
+    static final int TV = 3;
+    static final int TV_ID=4;
+
 
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     private MovieHelper movieHelper;
@@ -54,7 +52,7 @@ public class Provider extends ContentProvider {
         return true;
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public Cursor query(Uri uri, String[] strings, String s, String[] strings1, String s1) {
         Cursor cursor;
@@ -71,9 +69,9 @@ public class Provider extends ContentProvider {
             case TV_ID:
                 cursor=tvHelper.queryByIdProvider(uri.getLastPathSegment());
                 break;
-            default:
-                cursor = null;
-                break;
+                default:
+                    cursor = null;
+                    break;
         }
         if (cursor!=null){
             cursor.setNotificationUri(Objects.requireNonNull(getContext()).getContentResolver(),uri);
@@ -89,7 +87,7 @@ public class Provider extends ContentProvider {
         return null;
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
         long added;
@@ -98,7 +96,7 @@ public class Provider extends ContentProvider {
             case MOVIE:
                 added = movieHelper.insertProvider(contentValues);
                 if (added>0){
-                    mUri = ContentUris.withAppendedId(CONTENT_URI,added);
+                   mUri = ContentUris.withAppendedId(CONTENT_URI,added);
                 }
                 break;
             case TV:
@@ -107,9 +105,9 @@ public class Provider extends ContentProvider {
                 if (added>0){
                     mUri = ContentUris.withAppendedId(CONTENT_URI_TV,added);
                 }
-            default:
-                added=0;
-                break;
+                default:
+                    added=0;
+                    break;
         }
         if (added > 0){
             Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri,null);
@@ -117,7 +115,7 @@ public class Provider extends ContentProvider {
         return mUri;
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public int delete(Uri uri, String s, String[] strings) {
 
@@ -130,18 +128,18 @@ public class Provider extends ContentProvider {
             case TV_ID:
 
                 deleted=tvHelper.deleteProvider(uri.getLastPathSegment());
-            default:
-                deleted = 0;
-                break;
+                default:
+                    deleted = 0;
+                    break;
         }
-        if (deleted > 0 ){
-            Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri,null);
+      if (deleted > 0 ){
+          Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri,null);
 
-        }
+      }
         return deleted;
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
         int updated;

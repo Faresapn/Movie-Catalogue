@@ -112,7 +112,6 @@ public class MovieHelper {
         return database.delete(TABLE_MOVIE, DbContract.MovieEntry.COLUMN_JUDUL+ " = " + "'"+title+"'" , null);
     }
 
-
     public Cursor queryByIdProvider(String id){
         return database.query(DATABASE_TABLE,null,DbContract.MovieEntry._ID,new String[]{id},null,null,null);
     }
