@@ -24,7 +24,9 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/favorite_widget_info" />
         </receiver>
-        <activity android:name=".SearchActivity"></activity>
+        <activity
+            android:name=".SearchMovieTv"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.setting" />
         <provider
             android:name=".provider.MovieTvProvider"
@@ -34,14 +36,17 @@
             android:writePermission="com.example.submisi5.WRITE_DATABASE" />
         <activity android:name=".Activity.DetailActivity" />
         <activity android:name=".Activity.MainActivity">
+
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-
+        <receiver android:name=".notif.release_reciever" />
+        <receiver android:name=".notif.daily_reciever"/>
         <service android:name=".widget.StackWidgetServices"
             android:permission="android.permission.BIND_REMOTEVIEWS"/>
     </application>

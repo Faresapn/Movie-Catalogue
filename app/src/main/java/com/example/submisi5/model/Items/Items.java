@@ -3,6 +3,8 @@ package com.example.submisi5.model.Items;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class Items implements Parcelable {
     int id;
     String  Desc_film,Title_film,Info_film,photo,Rating_bar,Rate, type;
@@ -86,28 +88,27 @@ public class Items implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt   (id);
-        dest.writeString(Desc_film);
-        dest.writeString(Title_film);
-        dest.writeString(Info_film);
-        dest.writeString(photo);
-
-        dest.writeString(Rating_bar);
-        dest.writeString(Rate);
-        dest.writeString(type);
+        dest.writeInt   (this.id);
+        dest.writeString(this.Desc_film);
+        dest.writeString(this.Title_film);
+        dest.writeString(this.Info_film);
+        dest.writeString(this.photo);
+        dest.writeString(this.Rating_bar);
+        dest.writeString(this.Rate);
+        dest.writeString(this.type);
     }
 
     protected Items(Parcel in) {
-        id = in.readInt();
-        Desc_film = in.readString();
-        Title_film = in.readString();
-        Info_film = in.readString();
-        photo = in.readString();
-
-        Rating_bar = in.readString();
-        Rate = in.readString();
-        type = in.readString();
+        this.id = in.readInt();
+        this.Desc_film = in.readString();
+        this.Title_film = in.readString();
+        this.Info_film = in.readString();
+        this.photo = in.readString();
+        this.Rating_bar = in.readString();
+        this.Rate = in.readString();
+        this.type = in.readString();
     }
+
 
     public static final Creator<Items> CREATOR = new Creator<Items>() {
         @Override

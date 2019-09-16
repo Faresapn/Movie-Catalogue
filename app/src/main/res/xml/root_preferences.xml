@@ -20,6 +20,7 @@
 
         <SwitchPreferenceCompat
             app:key="@string/release_notif"
+            app:theme="@style/TabTheme"
             app:title="@string/release_notif"
             app:summary="@string/attachment_release"
             />

@@ -44,29 +44,26 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         moveFragment(new MovieFragment());
     }
     private BottomNavigationView.OnNavigationItemSelectedListener monNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            = menuItem -> {
 
-            switch (menuItem.getItemId()) {
-                case R.id.film:
-                    moveFragment(new MovieFragment());
-                    break;
+                switch (menuItem.getItemId()) {
+                    case R.id.film:
+                        moveFragment(new MovieFragment());
+                        break;
 
-                case R.id.show:
+                    case R.id.show:
 
-                    moveFragment(new ShowFragment());
-                    break;
-                case R.id.favorit:
-                    moveFragment(new FavoritFragment());
-                    break;
+                        moveFragment(new ShowFragment());
+                        break;
+                    case R.id.favorit:
+                        moveFragment(new FavoritFragment());
+                        break;
 
-            }
-            menuItem.setCheckable(true);
-            menuItem.setChecked(true);
-            return false;
-        }
-    };
+                }
+                menuItem.setCheckable(true);
+                menuItem.setChecked(true);
+                return false;
+            };
 
     @Override
     public void onClick(View v) {

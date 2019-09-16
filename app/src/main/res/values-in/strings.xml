@@ -8,5 +8,8 @@
     <string name="favorite">Faforit</string>
     <string name="add">Sukses</string>
     <string name="addf">gagal</string>
+    <string name="search_">Cari </string>
+    <string name="release_notif">Peringatan Rilis</string>
+    <string name="daily_notif">Peringatan harian</string>
     <string name="movie_and_tv_show">film dan acara tv</string>
 </resources>

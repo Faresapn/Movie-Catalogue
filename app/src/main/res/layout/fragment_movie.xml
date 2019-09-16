@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,12 +15,15 @@
 android:layout_marginTop="50dp"
         android:layout_height="match_parent"
         tools:listitem="@layout/item" />
+
     <ProgressBar
         android:id="@+id/loading_film"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
-        android:indeterminateTint="@color/colorPrimary"
-        android:indeterminate="true" />
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimary" />
+
+
 </FrameLayout>

@@ -22,7 +22,7 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.CategoryViewHolder> {
     private Context context;
     private ArrayList<Items> mList = new ArrayList<>();
     View v;
-    private OnItemClickListener mListener;
+    private  OnItemClickListener mListener;
 
 
     public Adapter(Context context) {
@@ -47,10 +47,9 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.CategoryViewHolder> {
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mListener = listener;
+    public void SetOnItemClickListener(OnItemClickListener mListener){
+        this.mListener = mListener;
     }
-
 
     //ViewHolder
     @Override

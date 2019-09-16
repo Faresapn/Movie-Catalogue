@@ -28,9 +28,9 @@ import java.util.ArrayList;
 public class ShowVM extends AndroidViewModel {
 
     private MutableLiveData<ArrayList<Items>> items = new MutableLiveData<>();
-    public static ArrayList<Items> mitems = new ArrayList<>();
-    RequestQueue rq;
-    String url,searchrl;
+    public  ArrayList<Items> mitems = new ArrayList<>();
+   private RequestQueue rq;
+   private String url,searchrl;
 
     public ShowVM(@NonNull Application application) {
         super(application);
@@ -42,37 +42,34 @@ public class ShowVM extends AndroidViewModel {
 
     public void getAPI() {
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonArray = response.getJSONArray("results");
-                    int length = jsonArray.length();
-                    for(int i = 0;i<length;i++){
-                        JSONObject result = jsonArray.getJSONObject(i);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
+            try {
+                JSONArray jsonArray = response.getJSONArray("results");
+                int length = jsonArray.length();
+                for(int i = 0;i<length;i++){
+                    JSONObject result = jsonArray.getJSONObject(i);
 
-                        String title = result.getString(     "original_name"  );
-                        String photo = result.getString(     "poster_path"   );
-                        String overview = result.getString(  "overview"      );
-                        String realease = result.getString(  "first_air_date");
-                        String rating_bar = result.getString("vote_average"  );
-                        String rate = result.getString(      "vote_average"  );
-                        Log.d("title", title);
-                        Items items = new Items();
-                        items.setTitle_film(title);
-                        items.setPhoto(photo);
+                    String title = result.getString(     "original_name"  );
+                    String photo = result.getString(     "poster_path"   );
+                    String overview = result.getString(  "overview"      );
+                    String realease = result.getString(  "first_air_date");
+                    String rating_bar = result.getString("vote_average"  );
+                    String rate = result.getString(      "vote_average"  );
+                    Log.d("title", title);
+                    Items items = new Items();
+                    items.setTitle_film(title);
+                    items.setPhoto(photo);
 
-                        items.setInfo_film(overview);
-                        items.setDesc_film(realease);
-                        items.setRating_bar(rating_bar);
-                        items.setRate(rate);
-                        mitems.add(items);
-                    }
-
-                    items.postValue(mitems);
-                }catch (JSONException e){
-                    e.printStackTrace();
+                    items.setInfo_film(overview);
+                    items.setDesc_film(realease);
+                    items.setRating_bar(rating_bar);
+                    items.setRate(rate);
+                    mitems.add(items);
                 }
+
+                items.postValue(mitems);
+            }catch (JSONException e){
+                e.printStackTrace();
             }
         }, error -> error.printStackTrace()
         );
@@ -115,8 +112,7 @@ public class ShowVM extends AndroidViewModel {
         }, error -> error.printStackTrace());
         rq.add(mRequest);
     }
-    public LiveData<ArrayList<Items>> getShow(){
-
-        return items ;
+    public LiveData<ArrayList<Items>> getmTvItems() {
+        return items;
     }
 }

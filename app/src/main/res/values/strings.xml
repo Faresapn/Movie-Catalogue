@@ -6,11 +6,11 @@
     <string name="tv_show">TV Show</string>
 
     <string name="not_found">Data is nothing in  language.</string>
-    <string name="api_movie">https://api.themoviedb.org/3/discover/movie?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US</string>
-    <string name="api_tv">https://api.themoviedb.org/3/discover/tv?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US</string>
-    <string name="api_movie_search">https://api.themoviedb.org/3/search/movie?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US&amp;query=</string>
-    <string name="api_tv_search">https://api.themoviedb.org/3/search/tv?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US&amp;query=</string>
-    <string name="api_release">https://api.themoviedb.org/3/discover/movie?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US&amp;primary_release_date.gte=%1$s&amp;primary_release_date.lte=%2$s</string>
+    <string name="api_movie" translatable="false">https://api.themoviedb.org/3/discover/movie?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US</string>
+    <string name="api_tv" translatable="false">https://api.themoviedb.org/3/discover/tv?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US</string>
+    <string name="api_movie_search" translatable="false">https://api.themoviedb.org/3/search/movie?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US&amp;query=</string>
+    <string name="api_tv_search" translatable="false">https://api.themoviedb.org/3/search/tv?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US&amp;query=</string>
+    <string name="api_release" translatable="false">https://api.themoviedb.org/3/discover/movie?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;primary_release_date.gte=2019-09-15&amp;primary_release_date.lte=2019-09-15</string>
     <string name="release_notif">Release Reminder</string>
     <string name="daily_notif">Daily Reminder</string>
     <string name="search_">Search </string>
@@ -34,4 +34,7 @@
     <string name="search">Search</string>
     <string name="notification_setting">Notification setting</string>
     <string name="favorit_movie">Favorit Movie</string>
+
+
+
 </resources>

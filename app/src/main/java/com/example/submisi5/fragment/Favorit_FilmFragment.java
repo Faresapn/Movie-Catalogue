@@ -57,7 +57,7 @@ public class Favorit_FilmFragment extends Fragment implements LoadCallback, Adap
 
 
         adapter = new Adapter(getContext());
-        adapter.setOnItemClickListener(Favorit_FilmFragment.this);
+        adapter.SetOnItemClickListener(Favorit_FilmFragment.this);
 
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
