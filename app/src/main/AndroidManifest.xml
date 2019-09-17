@@ -25,11 +25,11 @@
                 android:resource="@xml/favorite_widget_info" />
         </receiver>
         <activity
-            android:name=".SearchMovieTv"
+            android:name=".Activity.SearchMovieTv"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.setting" />
+        <activity android:name=".Activity.SettingsActivity" />
         <provider
-            android:name=".provider.MovieTvProvider"
+            android:name=".provider.Provider"
             android:authorities="com.example.submisi5"
             android:exported="true"
             android:readPermission="com.example.submisi5.READ_DATABASE"

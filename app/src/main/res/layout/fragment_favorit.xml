@@ -9,7 +9,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="55dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorTab"
@@ -22,11 +22,11 @@
             android:layout_height="wrap_content"
             >
             <com.google.android.material.tabs.TabItem
-                android:text="Favorit Film"
+                android:text="@string/fvflm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <com.google.android.material.tabs.TabItem
-                android:text="Favorit Tv"
+                android:text="@string/fvtv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.tabs.TabLayout>

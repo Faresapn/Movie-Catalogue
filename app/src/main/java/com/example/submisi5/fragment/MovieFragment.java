@@ -16,7 +16,6 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -25,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.submisi5.Activity.DetailActivity;
 import com.example.submisi5.R;
-import com.example.submisi5.SearchMovieTv;
+import com.example.submisi5.Activity.SearchMovieTv;
 import com.example.submisi5.adapter.Adapter;
 import com.example.submisi5.model.Items.Items;
 import com.example.submisi5.model.movie.MovieVM;
@@ -33,7 +32,7 @@ import com.example.submisi5.model.movie.MovieVM;
 import java.util.ArrayList;
 
 import static com.example.submisi5.Activity.DetailActivity.EXTRA_DETAIL;
-import static com.example.submisi5.SearchMovieTv.EXTRA_SEARCH;
+import static com.example.submisi5.Activity.SearchMovieTv.EXTRA_SEARCH;
 
 
 /**
@@ -148,11 +147,5 @@ public class MovieFragment extends Fragment implements Adapter.OnItemClickListen
         //movieVM.mitems.get(i).getInfo_film(), movieVM.mitems.get(i).getTitle_film(), movieVM.mitems.get(i).getDesc_film(),
         // movieVM.mitems.get(i).getPhoto(),movieVM.mitems.get(i).getRating_bar(),movieVM.mitems.get(i).getRate()
     }
-    private void showLoading(Boolean state) {
-        if (state) {
-            mProgressBar.setVisibility(View.VISIBLE);
-        } else {
-            mProgressBar.setVisibility(View.GONE);
-        }
-    }
+
 }

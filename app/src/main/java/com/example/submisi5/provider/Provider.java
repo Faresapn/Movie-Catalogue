@@ -23,7 +23,7 @@ import static com.example.submisi5.database.DbContract.TABLE_TV;
 import static com.example.submisi5.database.DbContract.TvEntry.CONTENT_URI_TV;
 
 
-public class MovieTvProvider extends ContentProvider {
+public class Provider extends ContentProvider {
     private static final  int MOVIE = 1;
     private static final  int MOVIE_ID = 2;
 

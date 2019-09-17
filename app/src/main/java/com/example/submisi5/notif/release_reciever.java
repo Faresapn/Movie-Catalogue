@@ -32,11 +32,9 @@ import java.util.Calendar;
 import java.util.Objects;
 
 import static android.content.Context.ALARM_SERVICE;
-
 public class release_reciever extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-      ////  NotificationManager notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
 
         getData(context);
     }
@@ -49,31 +47,23 @@ public class release_reciever extends BroadcastReceiver {
         String day = String.valueOf(rightnow.get(Calendar.DATE));
         String release_date = year+"-"+month+"-"+day;
         Log.d("RELEASE",release_date);
-        String url = context.getResources().getString(R.string.api_release);
+        String url = context.getResources().getString(R.string.api_release,release_date,release_date);
         Log.d("URL_RELEASE",url);
 
-        JsonObjectRequest mRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonArray = response.getJSONArray("results");
-                    int length = jsonArray.length();
-                    for(int i = 0;i<length;i++){
-                        JSONObject result = jsonArray.getJSONObject(i);
-                        String title = result.getString("title");
-                        showrelease(context,title,i);
-                    }
-
-                } catch (JSONException ex) {
-                    ex.printStackTrace();
+        JsonObjectRequest mRequest = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
+            try {
+                JSONArray jsonArray = response.getJSONArray("results");
+                int length = jsonArray.length();
+                for(int i = 0;i<length;i++){
+                    JSONObject result = jsonArray.getJSONObject(i);
+                    String title = result.getString("title");
+                    showrelease(context,title,i);
                 }
+
+            } catch (JSONException ex) {
+                ex.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
+        }, error -> error.printStackTrace());
         mRequestQueue.add(mRequest);
 
     }
@@ -93,29 +83,29 @@ public class release_reciever extends BroadcastReceiver {
                 .setAutoCancel(true);
         Notification notification = mBuilder.build();
 
-        // if (mNotificationManager !=null){
+
         if (mNotificationManager != null) {
             mNotificationManager.notify(i,notification);
         }
     }
-    public static void release_setalarmmanager(Context context){
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY,8);
-            calendar.set(Calendar.MINUTE,0);
-            calendar.set(Calendar.SECOND,0);
+    public void release_setalarmmanager(Context context){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,8);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
 
 
-            Intent intent = new Intent(context, release_reciever.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent intent = new Intent(context, release_reciever.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 
-            AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         if (alarmManager != null) {
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
         }
 
     }
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public static void release_setcancel(Context context){
+
+    public void release_setcancel(Context context){
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(context,release_reciever.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);

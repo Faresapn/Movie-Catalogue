@@ -22,15 +22,18 @@ import static com.example.submisi5.utils.Constants.IS_DAILY_REMINDER;
 import static com.example.submisi5.utils.Constants.IS_RELEASE_REMINDER;
 
 
-public class setting extends AppCompatActivity {
-    static release_reciever release_r;
+
+public class SettingsActivity extends AppCompatActivity {
+    static release_reciever release_reciever;
     static daily_reciever daily_receiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting); getSupportFragmentManager()
+        setContentView(R.layout.activity_setting);
+        getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.setting_holder, new SettingsFragment())
+                .replace(R.id.settings, new SettingsFragment())
                 .commit();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -49,15 +52,14 @@ public class setting extends AppCompatActivity {
 
         toolbar.setNavigationOnClickListener(view -> {
             onBackPressed();
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
-        SwitchPreferenceCompat release,daily;
+        SwitchPreferenceCompat release, daily;
         SharedPreferences SP;
 
-        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
@@ -65,33 +67,33 @@ public class setting extends AppCompatActivity {
             release = findPreference(getResources().getString(R.string.release_notif));
             daily = findPreference(getResources().getString(R.string.daily_notif));
             release.setOnPreferenceClickListener(preference -> {
-                if (release.isChecked()){
+                if (release.isChecked()) {
                     //Toast.makeText(getContext(), "CHECKED", Toast.LENGTH_SHORT).show();
-                    SharedPreferences.Editor editor =SP.edit();
-                    editor.putBoolean(IS_RELEASE_REMINDER,true);
+                    SharedPreferences.Editor editor = SP.edit();
+                    editor.putBoolean(IS_RELEASE_REMINDER, true);
                     editor.apply();
-                    release_r = new release_reciever();
+                    release_reciever = new release_reciever();
                     release_reciever.release_setalarmmanager(getContext());
-                }else if (!release.isChecked()){
-                    SharedPreferences.Editor editor =SP.edit();
-                    editor.putBoolean(IS_RELEASE_REMINDER,false);
+                } else if (!release.isChecked()) {
+                    SharedPreferences.Editor editor = SP.edit();
+                    editor.putBoolean(IS_RELEASE_REMINDER, false);
                     editor.apply();
-                    release_r = new release_reciever();
+                    release_reciever = new release_reciever();
                     release_reciever.release_setcancel(getContext());
                 }
                 return false;
             });
             daily.setOnPreferenceClickListener(preference -> {
-                if (daily.isChecked()){
+                if (daily.isChecked()) {
                     //  Toast.makeText(getContext(), "CHECKED", Toast.LENGTH_SHORT).show();
-                    SharedPreferences.Editor editor =SP.edit();
-                    editor.putBoolean(IS_DAILY_REMINDER,true);
+                    SharedPreferences.Editor editor = SP.edit();
+                    editor.putBoolean(IS_DAILY_REMINDER, true);
                     editor.apply();
                     daily_receiver = new daily_reciever();
                     daily_receiver.daily_setalarmmanager(getContext());
-                }else if (!daily.isChecked()){
-                    SharedPreferences.Editor editor =SP.edit();
-                    editor.putBoolean(IS_DAILY_REMINDER,false);
+                } else if (!daily.isChecked()) {
+                    SharedPreferences.Editor editor = SP.edit();
+                    editor.putBoolean(IS_DAILY_REMINDER, false);
                     editor.apply();
                     daily_receiver = new daily_reciever();
                     daily_receiver.daily_setcancel(getContext());

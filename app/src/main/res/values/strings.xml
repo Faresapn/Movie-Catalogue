@@ -10,7 +10,7 @@
     <string name="api_tv" translatable="false">https://api.themoviedb.org/3/discover/tv?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US</string>
     <string name="api_movie_search" translatable="false">https://api.themoviedb.org/3/search/movie?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US&amp;query=</string>
     <string name="api_tv_search" translatable="false">https://api.themoviedb.org/3/search/tv?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US&amp;query=</string>
-    <string name="api_release" translatable="false">https://api.themoviedb.org/3/discover/movie?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;primary_release_date.gte=2019-09-15&amp;primary_release_date.lte=2019-09-15</string>
+    <string name="api_release" translatable="false">https://api.themoviedb.org/3/discover/movie?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US&amp;primary_release_date.gte=%1$s&amp;primary_release_date.lte=%2$s</string>
     <string name="release_notif">Release Reminder</string>
     <string name="daily_notif">Daily Reminder</string>
     <string name="search_">Search </string>
@@ -20,9 +20,9 @@
     <string name="attachment_release">Reminder Showing That Movie Release Today</string>
     <string name="attachment_daily">Reminder For Return To App</string>
     <string name="hello_world"></string>
-    <string name="overview">OverView</string>
+
     <string name="detail">Earth is peaceful following the Tournament of Power. Realizing that the universes still hold many more strong people yet to see, Goku spends all his days training to reach even greater heights. Then one day, Goku and Vegeta are faced by a Saiyan called \'Broly\' who they\'ve never seen before. The Saiyans were supposed to have been almost completely wiped out in the destruction of Planet Vegeta, so what\'s this one doing on Earth? This encounter between the three Saiyans who have followed completely different destinies turns into a stupendous battle, with even Frieza (back from Hell) getting caught up in the mix.</string>
-    <string name="tahun_rilis">tahun rilis</string>
+    <string name="tahun_rilis">Release Year</string>
     <string name="favorite">Favorite</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -33,8 +33,7 @@
     <string name="movie_and_tv_show">movie and tv show</string>
     <string name="search">Search</string>
     <string name="notification_setting">Notification setting</string>
-    <string name="favorit_movie">Favorit Movie</string>
-
+    <string name="t">tittle</string>
 
 
 </resources>

@@ -1,4 +1,4 @@
-package com.example.submisi5;
+package com.example.submisi5.Activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.submisi5.R;
 import com.example.submisi5.adapter.Adapter;
-import com.example.submisi5.fragment.MovieFragment;
 import com.example.submisi5.model.Items.Items;
 import com.example.submisi5.model.movie.MovieVM;
 import com.example.submisi5.model.tv.ShowVM;

@@ -1,8 +1,6 @@
 package com.example.submisi5.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -10,13 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.submisi5.R;
 import com.example.submisi5.fragment.FavoritFragment;
@@ -97,7 +93,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             startActivity(mIntent);
 
         }else if (id == R.id.notification_setting){
-            startActivity(new Intent(MainActivity.this,setting.class));
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

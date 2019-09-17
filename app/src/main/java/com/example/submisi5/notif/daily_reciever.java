@@ -35,8 +35,8 @@ public class daily_reciever extends BroadcastReceiver {
         NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context,"channel_01")
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.ic_movie)
-                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.drawable.ic_movie))
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.drawable.ic_notifications_black_24dp))
                 .setContentTitle(context.getResources().getString(R.string.app_name))
                 .setContentText(context.getString(R.string.content_notif))
                 .setAutoCancel(true);
@@ -62,7 +62,7 @@ public class daily_reciever extends BroadcastReceiver {
         }
 
     }
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+
     public void daily_setcancel(Context context){
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(context,daily_reciever.class);

@@ -25,7 +25,7 @@ import android.widget.Toast;
 
 import com.example.submisi5.Activity.DetailActivity;
 import com.example.submisi5.R;
-import com.example.submisi5.SearchMovieTv;
+import com.example.submisi5.Activity.SearchMovieTv;
 import com.example.submisi5.adapter.Adapter;
 import com.example.submisi5.model.Items.Items;
 import com.example.submisi5.model.tv.ShowVM;
@@ -33,7 +33,7 @@ import com.example.submisi5.model.tv.ShowVM;
 import java.util.ArrayList;
 
 import static com.example.submisi5.Activity.DetailActivity.EXTRA_DETAIL;
-import static com.example.submisi5.SearchMovieTv.EXTRA_SEARCH;
+import static com.example.submisi5.Activity.SearchMovieTv.EXTRA_SEARCH;
 
 
 /**
@@ -119,13 +119,7 @@ public class ShowFragment extends Fragment implements Adapter.OnItemClickListene
             }
         }
     };
-    private void showLoading(Boolean state) {
-        if (state) {
-            mProgressBar.setVisibility(View.VISIBLE);
-        } else {
-            mProgressBar.setVisibility(View.GONE);
-        }
-    }
+
 
 
     @Override
