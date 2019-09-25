@@ -4,6 +4,6 @@
     android:initialLayout="@layout/item_widgets"
     android:minWidth="250dp"
     android:minHeight="110dp"
-    android:previewImage="@drawable/tv"
+    android:previewImage="@drawable/poster_avengerinfinity"
     android:updatePeriodMillis="0"
     android:widgetCategory="home_screen"></appwidget-provider>

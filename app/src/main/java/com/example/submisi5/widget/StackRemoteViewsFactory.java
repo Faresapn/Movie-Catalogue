@@ -21,21 +21,21 @@ import static com.example.submisi5.database.DbContract.MovieEntry.CONTENT_URI;
 
 public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
-    Context context;
-    Cursor cursor;
-    int ID;
+   private Context mContext;
+   private Cursor mCursor;
+   int ID;
 
-    public StackRemoteViewsFactory(Context context,Intent intent) {
-        this.context = context;
+    public StackRemoteViewsFactory(Context context, Intent intent) {
+        this.mContext = context;
         ID  =intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID);
     }
 
     @Override
     public void onCreate() {
-        if (cursor!=null){
-            cursor.close();
+        if (mCursor!=null){
+            mCursor.close();
         }
-        cursor = context.getContentResolver().query(CONTENT_URI,null,null,null,null);
+        mCursor = mContext.getContentResolver().query(CONTENT_URI,null,null,null,null);
 
     }
 
@@ -52,43 +52,43 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public int getCount() {
-        return cursor.getCount();
+        return mCursor.getCount();
     }
 
 
 
     private ItemsWidget getItems(int position){
-        if (!cursor.moveToPosition(position)){
+        if (!mCursor.moveToPosition(position)){
             try {
                 throw new IllegalAccessException("Error");
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
-        return new ItemsWidget(cursor);
+        return new ItemsWidget(mCursor);
     }
     @Override
-    public RemoteViews getViewAt(int i) {
-        final RemoteViews rv= new RemoteViews(context.getPackageName(), R.layout.widget_items);
+    public android.widget.RemoteViews getViewAt(int i) {
+        final android.widget.RemoteViews remoteViews= new android.widget.RemoteViews(mContext.getPackageName(), R.layout.widget_items);
         ItemsWidget movieTvItems = getItems(i);
         Bitmap bitmap = null;
         try {
-            bitmap = Glide.with(context).asBitmap().load("https://image.tmdb.org/t/p/w500"+movieTvItems.getPhoto()).apply(new RequestOptions().fitCenter()).submit().get();
+            bitmap = Glide.with(mContext).asBitmap().load("https://image.tmdb.org/t/p/w500"+movieTvItems.getPhoto()).apply(new RequestOptions().fitCenter()).submit().get();
         }catch (InterruptedException|ExecutionException e  ){
             e.printStackTrace();
         }
-        rv.setImageViewBitmap(R.id.image_widget,bitmap);
+        remoteViews.setImageViewBitmap(R.id.image_widget,bitmap);
 
         Bundle extras = new Bundle();
-        extras.putInt(FavoriteWidget.EXTRA_ITEM,i);
+        extras.putInt(Widget.EXTRA_ITEM,i);
         Intent intent = new Intent();
         intent.putExtras(extras);
-        rv.setOnClickFillInIntent(R.id.image_widget,intent);
-        return rv;
+        remoteViews.setOnClickFillInIntent(R.id.image_widget,intent);
+        return remoteViews;
     }
 
     @Override
-    public RemoteViews getLoadingView() {
+    public android.widget.RemoteViews getLoadingView() {
         return null;
     }
 

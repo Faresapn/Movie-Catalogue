@@ -9,7 +9,7 @@
 
     <include
         layout="@layout/appbar"
-        android:id="@+id/container_layout"
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

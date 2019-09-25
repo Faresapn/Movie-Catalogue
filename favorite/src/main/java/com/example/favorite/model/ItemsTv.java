@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.favorite.DbContract;
+import com.example.favorite.DbTvContract;
 
 import static com.example.favorite.DbContract.getColoumnInt;
 import static com.example.favorite.DbContract.getColoumnString;
@@ -12,10 +13,6 @@ import static com.example.favorite.DbContract.getColoumnString;
 public class ItemsTv implements Parcelable {
     int id;
     String  Desc_film,Title_film,Info_film,photo,Rating_bar,Rate, type;
-    public ItemsTv() {
-
-    }
-
 
 
     public String getDesc_film() {
@@ -115,13 +112,13 @@ public class ItemsTv implements Parcelable {
     }
     public ItemsTv(Cursor cursor) {
 
-        this.id = getColoumnInt(cursor, DbContract.TvEntry._ID);
-        this.Title_film = getColoumnString(cursor,  DbContract.TvEntry.COLUMN_JUDUL);
-        this.photo = getColoumnString(cursor, DbContract.TvEntry.COLUMN_POSTER);
-        this.Desc_film = getColoumnString(cursor, DbContract.TvEntry.COLUMN_OVERVIEW);
-        this.Info_film = getColoumnString(cursor, DbContract.TvEntry.COLUMN_RELEASE);
-        this.Rating_bar = getColoumnString(cursor, DbContract.TvEntry.COLUMN_RATINGBAR);
-        this.Rate = getColoumnString(cursor, DbContract.TvEntry.COLUMN_RATING);
+        this.id = getColoumnInt(cursor, DbTvContract.TvEntry._ID);
+        this.Title_film = getColoumnString(cursor,  DbTvContract.TvEntry.COLUMN_JUDUL);
+        this.photo = getColoumnString(cursor, DbTvContract.TvEntry.COLUMN_POSTER);
+        this.Desc_film = getColoumnString(cursor, DbTvContract.TvEntry.COLUMN_OVERVIEW);
+        this.Info_film = getColoumnString(cursor, DbTvContract.TvEntry.COLUMN_RELEASE);
+        this.Rating_bar = getColoumnString(cursor, DbTvContract.TvEntry.COLUMN_RATINGBAR);
+        this.Rate = getColoumnString(cursor, DbTvContract.TvEntry.COLUMN_RATING);
 
     }
 

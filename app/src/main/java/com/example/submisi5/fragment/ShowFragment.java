@@ -57,19 +57,15 @@ public class ShowFragment extends Fragment implements Adapter.OnItemClickListene
         View v = inflater.inflate(R.layout.fragment_show, container, false);
         setHasOptionsMenu(true);
         mProgressBar = v.findViewById(R.id.loading_show);
-
         adapter = new Adapter(getContext());
         adapter.SetOnItemClickListener(ShowFragment.this);
         adapter.notifyDataSetChanged();
-
         showVM = ViewModelProviders.of(getActivity()).get(ShowVM.class);
         showVM.getmTvItems().observe(ShowFragment.this, getmMovieTvItems);
         showVM.getAPI();
-
         RecyclerView mRecyclerView = v.findViewById(R.id.rv_show);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         mRecyclerView.setAdapter(adapter);
-
         return v;
     }
 
@@ -87,7 +83,6 @@ public class ShowFragment extends Fragment implements Adapter.OnItemClickListene
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
-                    Log.d("tesstt", query);
                     Items items = new Items();
                     items.setTitle_film(query);
                     items.setType("MOVIE");
@@ -127,16 +122,13 @@ public class ShowFragment extends Fragment implements Adapter.OnItemClickListene
         Items items = new Items();
         String type = "TV";
         items.setPhoto(showVM.mitems.get(i).getPhoto());
-
         items.setTitle_film(showVM.mitems.get(i).getTitle_film());
         items.setDesc_film(showVM.mitems.get(i).getDesc_film());
         items.setInfo_film(showVM.mitems.get(i).getInfo_film());
         items.setRate(showVM.mitems.get(i).getRate());
         items.setRating_bar(showVM.mitems.get(i).getRating_bar());
         items.setType(type);
-
         Intent detail = new Intent(getContext(), DetailActivity.class);
-
         detail.putExtra(EXTRA_DETAIL,items);
         startActivity(detail);
     }

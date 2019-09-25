@@ -14,22 +14,22 @@
   ~ limitations under the License.
   -->
 
-<androidx.preference.PreferenceScreen  xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory>
 
         <SwitchPreferenceCompat
-            app:key="@string/release_notif"
-            app:theme="@style/TabTheme"
-            app:title="@string/release_notif"
-            app:summary="@string/attachment_release"
+            app:key="@string/daili"
+            app:title="@string/daili"
+            app:summary="Reminder to show movie release today"
             />
 
         <SwitchPreferenceCompat
 
-            app:key="@string/daily_notif"
-            app:title="@string/daily_notif"
-            app:summary="@string/attachment_daily" />
+            app:key="@string/rilis"
+            app:title="@string/rilis"
+            app:summary="Reminder to show movie release today"
+           />
 
     </PreferenceCategory>
 

@@ -19,12 +19,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.favorite.R;
-import com.example.favorite.adapter.TVFavAdapter;
+import com.example.favorite.adapter.ShowAdapter;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
-import static com.example.favorite.DbContract.TvEntry.CONTENT_URI_TV;
+import static com.example.favorite.DbTvContract.TvEntry.CONTENT_URI_TV;
 
 
 /**
@@ -32,8 +31,8 @@ import static com.example.favorite.DbContract.TvEntry.CONTENT_URI_TV;
  */
 public class Favorit_ShowFragment extends Fragment  {
 
-    TVFavAdapter tvFavAdapter;
-    Cursor mList;
+    ShowAdapter showAdapter;
+    Cursor mCursor;
     RecyclerView mRecyclerView;
 
 
@@ -47,13 +46,10 @@ public class Favorit_ShowFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =   inflater.inflate(R.layout.fragment_favorit__show, container, false);
-
         mRecyclerView = v.findViewById(R.id.rv_show);
-
-        tvFavAdapter = new TVFavAdapter(getContext());
-        Log.d("tvcreate","tvcreate");
+        showAdapter = new ShowAdapter(getContext());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));
-        mRecyclerView.setAdapter(tvFavAdapter);
+        mRecyclerView.setAdapter(showAdapter);
         new LoadTvFav().execute();
         return v;
     }
@@ -68,16 +64,15 @@ public class Favorit_ShowFragment extends Fragment  {
         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         protected Cursor doInBackground(Void... voids) {
-            Log.d("background", String.valueOf(CONTENT_URI_TV));
             return Objects.requireNonNull(getContext()).getContentResolver().query(CONTENT_URI_TV,null,null,null,null);
         }
 
         @Override
         protected void onPostExecute(Cursor cursor) {
             super.onPostExecute(cursor);
-            mList = cursor;
-            tvFavAdapter.setmMovieTvItems(mList);
-            tvFavAdapter.notifyDataSetChanged();
+            mCursor = cursor;
+            showAdapter.setmMovieTvItems(mCursor);
+            showAdapter.notifyDataSetChanged();
         }
 
 

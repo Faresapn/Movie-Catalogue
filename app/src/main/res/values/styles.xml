@@ -25,4 +25,8 @@
         <item name="colorControlNormal">@color/colorTab</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
+    <style name="setting" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/colorSet</item>
+        <item name="colorControlActivated">@color/colorSet</item>
+    </style>
 </resources>

@@ -15,7 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name=".widget.FavoriteWidget">
+        <activity android:name=".Splash"> <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+
+        <receiver android:name=".widget.Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -24,31 +31,32 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/favorite_widget_info" />
         </receiver>
+
         <activity
             android:name=".Activity.SearchMovieTv"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.SettingsActivity" />
+        <activity android:name=".Activity.SettingActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+
         <provider
             android:name=".provider.Provider"
             android:authorities="com.example.submisi5"
             android:exported="true"
             android:readPermission="com.example.submisi5.READ_DATABASE"
             android:writePermission="com.example.submisi5.WRITE_DATABASE" />
+
         <activity android:name=".Activity.DetailActivity" />
         <activity android:name=".Activity.MainActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
-        <receiver android:name=".notif.release_reciever" />
-        <receiver android:name=".notif.daily_reciever"/>
-        <service android:name=".widget.StackWidgetServices"
-            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+        <receiver android:name=".alarm.ReminderActivity" />
+        <receiver android:name=".alarm.ReminderActivity"/>
+
+        <service
+            android:name=".widget.WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>

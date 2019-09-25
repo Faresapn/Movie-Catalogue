@@ -18,14 +18,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import static com.example.favorite.DbContract.MovieEntry.CONTENT_URI;
-;
-import static com.example.favorite.DbContract.TvEntry.CONTENT_URI_TV;
+
+import static com.example.favorite.DbTvContract.TvEntry.CONTENT_URI_TV;
 
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_TV="extra_tv";
     public static final String EXTRA_MOVIE="extra_movie";
-    Items resultmovie,resulttv;
+    Items movie,show;
     TextView title,desc,info,rate;
     ImageView photo;
     RatingBar ratingbar;
@@ -47,55 +47,52 @@ public class DetailActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
 
         loadIntent();
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (is_movie){
-                    removefavmovie();
-                }
-                else {
-                    removefavtv();
-                }
+        fab.setOnClickListener(view -> {
+            if (is_movie){
+                deletemovie();
+            }
+            else {
+                deleteshow();
             }
         });
     }
 
-    private void removefavtv() {
-        getContentResolver().delete(Uri.parse(CONTENT_URI_TV+"/"+resulttv.getId()),null,null);
+    private void deleteshow() {
+        getContentResolver().delete(Uri.parse(CONTENT_URI_TV+"/"+show.getId()),null,null);
         Toast.makeText(DetailActivity.this, R.string.add, Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
 
-    private void removefavmovie() {
-        getContentResolver().delete(Uri.parse(CONTENT_URI+"/"+resultmovie.getId()),null,null);
+    private void deletemovie() {
+        getContentResolver().delete(Uri.parse(CONTENT_URI+"/"+movie.getId()),null,null);
         Toast.makeText(DetailActivity.this, R.string.add, Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
 
     void loadIntent(){
-        resultmovie = getIntent().getParcelableExtra(EXTRA_MOVIE);
-        resulttv = getIntent().getParcelableExtra(EXTRA_TV);
-        if (resulttv != null){
+       movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        show = getIntent().getParcelableExtra(EXTRA_TV);
+        if (show != null){
             progressBar.setVisibility(View.GONE);
             is_movie=false;
-            Log.d("tv", String.valueOf(resulttv.getId()));
-            title.setText(resulttv.getTitle_film());
-            info.setText(resulttv.getInfo_film());
-            rate.setText(resulttv.getRate());
-            ratingbar.setRating(Float.valueOf(resulttv.getRating_bar()) / 2);
-            desc.setText(resulttv.getDesc_film());
-            Picasso.with(getApplicationContext()).load("https://image.tmdb.org/t/p/w500"+resulttv.getPhoto()).into(photo);
+            Log.d("tv", String.valueOf(show.getId()));
+            title.setText(show.getTitle_film());
+            info.setText(show.getInfo_film());
+            rate.setText(show.getRate());
+            ratingbar.setRating(Float.valueOf(show.getRating_bar()) / 2);
+            desc.setText(show.getDesc_film());
+            Picasso.with(getApplicationContext()).load("https://image.tmdb.org/t/p/w500"+show.getPhoto()).into(photo);
         }else {
-            Log.d("movie", String.valueOf(resultmovie.getId()));
+            Log.d("movie", String.valueOf(movie.getId()));
             progressBar.setVisibility(View.GONE);
             is_movie=true;
-            Log.d("tv", String.valueOf(resultmovie.getId()));
-            title.setText(resultmovie.getTitle_film());
-            info.setText(resultmovie.getInfo_film());
-            rate.setText(resultmovie.getRate());
-            ratingbar.setRating(Float.valueOf(resultmovie.getRating_bar()) / 2);
-            desc.setText(resultmovie.getDesc_film());
-            Picasso.with(getApplicationContext()).load("https://image.tmdb.org/t/p/w500"+resultmovie.getPhoto()).into(photo);
+            Log.d("tv", String.valueOf(movie.getId()));
+            title.setText(movie.getTitle_film());
+            info.setText(movie.getInfo_film());
+            rate.setText(movie.getRate());
+            ratingbar.setRating(Float.valueOf(movie.getRating_bar()) / 2);
+            desc.setText(movie.getDesc_film());
+            Picasso.with(getApplicationContext()).load("https://image.tmdb.org/t/p/w500"+movie.getPhoto()).into(photo);
         }
     }
 }

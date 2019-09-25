@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">katalog movie</string>
-    <string name="hello_world">Halo Dunia</string>
+
+
     <string name="action_settings">Pengaturan Bahasa</string>
     <string name="film">Film</string>
     <string name="tv_show">siaran tv</string>
     <string name="favorite">Disukai</string>
     <string name="add">Sukses</string>
     <string name="addf">gagal</string>
-    <string name="search_">Cari </string>
+    <string name="fmtv">Film and Tv show</string>
     <string name="movie_and_tv_show">film dan acara tv</string>
     <string name="search">pencarian</string>
     <string name="tahun_rilis">tahun rilis</string>
     <string name="fvtv">Tv disukai</string>
     <string name="fvflm">Film Disukai</string>
-    <string name="touch">tekan</string>
+    <string name="notification_setting">Pengaturan Notifikasi</string>
 </resources>

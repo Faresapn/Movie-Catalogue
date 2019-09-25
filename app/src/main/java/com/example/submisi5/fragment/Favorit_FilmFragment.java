@@ -48,21 +48,14 @@ public class Favorit_FilmFragment extends Fragment implements LoadCallback, Adap
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_favorit__film, container, false);
-
         mProgressBar = v.findViewById(R.id.loading_film);
         RecyclerView mRecyclerView = v.findViewById(R.id.rv_movie);
-
         mMovieHelper = MovieHelper.getInstance(getContext());
         mMovieHelper.open();
-
-
         adapter = new Adapter(getContext());
         adapter.SetOnItemClickListener(Favorit_FilmFragment.this);
-
-
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
         mRecyclerView.setAdapter(adapter);
-
         new LoadMovieAsync(mMovieHelper,this).execute();
         return v;
     }
@@ -86,7 +79,6 @@ public class Favorit_FilmFragment extends Fragment implements LoadCallback, Adap
         Items movieTv_items = new Items();
         String type = "MOVIE";
         movieTv_items.setId(mListFav.get(position).getId());
-        Log.d("idfav", String.valueOf(mListFav.get(position).getId()));
         movieTv_items.setPhoto(mListFav.get(position).getPhoto());
         movieTv_items.setTitle_film(mListFav.get(position).getTitle_film());
         movieTv_items.setDesc_film(mListFav.get(position).getInfo_film());

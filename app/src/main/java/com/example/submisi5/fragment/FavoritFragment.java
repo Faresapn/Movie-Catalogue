@@ -24,9 +24,9 @@ import com.google.android.material.tabs.TabLayout;
 public class FavoritFragment extends Fragment {
 
 
-    ViewPager viewpager;
+   private ViewPager viewpager;
 
-    TabLayout tabss;
+   private TabLayout tabss;
     public FavoritFragment() {
         // Required empty public constructor
     }
@@ -37,13 +37,12 @@ public class FavoritFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =inflater.inflate(R.layout.fragment_favorit, container, false);
-        tabss = v.findViewById(R.id.viewpagertab);
+        tabss = v.findViewById(R.id.navtab);
         viewpager = v.findViewById(R.id.viewpager);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mLinearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         viewpager.setAdapter(new viewpageradapter(getFragmentManager(),tabss.getTabCount()));
         viewpager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabss));
-        //tabss.setupWithViewPager(viewpager);
         tabss.setTabMode(TabLayout.MODE_FIXED);
         tabss.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -65,8 +64,8 @@ public class FavoritFragment extends Fragment {
     }
     public class viewpageradapter extends FragmentStatePagerAdapter {
         int mNumofTabs;
-        public viewpageradapter(FragmentManager fm, int mNumOfTabs) {
-            super(fm);
+        public viewpageradapter(FragmentManager fragmentManager, int mNumOfTabs) {
+            super(fragmentManager);
             this.mNumofTabs = mNumOfTabs;
         }
 
@@ -74,7 +73,6 @@ public class FavoritFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position){
                 case 0:
-
                     return new Favorit_FilmFragment();
                 case 1:
                     return new Favorit_ShowFragment();

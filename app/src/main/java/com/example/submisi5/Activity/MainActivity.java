@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             startActivity(mIntent);
 
         }else if (id == R.id.notification_setting){
-            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+            startActivity(new Intent(MainActivity.this, SettingActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.favorite.DetailActivity;
-import com.example.favorite.model.Items;
 import com.example.favorite.R;
 import com.example.favorite.model.ItemsTv;
 import com.squareup.picasso.Picasso;
@@ -22,18 +21,16 @@ import com.squareup.picasso.Picasso;
 import static com.example.favorite.DetailActivity.EXTRA_TV;
 
 
-public class TVFavAdapter extends RecyclerView.Adapter<TVFavAdapter.TvFavAdapterViewHolder> {
+public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.TvFavAdapterViewHolder> {
     Context context;
     Cursor cursor;
     OnItemClickListener mListener;
     public interface OnItemClickListener{
         void onItemClick(int position);
     }
-    public void SetOnItemClickListener(OnItemClickListener mListener){
-        this.mListener = mListener;
-    }
 
-    public TVFavAdapter(Context context) {
+
+    public ShowAdapter(Context context) {
         this.context = context;
     }
     public void setmMovieTvItems(Cursor movieTvFavItems) {
@@ -43,14 +40,14 @@ public class TVFavAdapter extends RecyclerView.Adapter<TVFavAdapter.TvFavAdapter
 
     @NonNull
     @Override
-    public TVFavAdapter.TvFavAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ShowAdapter.TvFavAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item,parent,false);
 
         return new TvFavAdapterViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final TVFavAdapter.TvFavAdapterViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ShowAdapter.TvFavAdapterViewHolder holder, int position) {
         final ItemsTv items = getItems(position);
         Picasso.with(context).load("https://image.tmdb.org/t/p/w500"+items.getPhoto()).into(holder.imageView);
         holder.title.setText(items.getTitle_film());
@@ -81,14 +78,11 @@ public class TVFavAdapter extends RecyclerView.Adapter<TVFavAdapter.TvFavAdapter
             imageView = itemView.findViewById(R.id.item_movie_poster);
             title = itemView.findViewById(R.id.item_movie_title);
             info = itemView.findViewById(R.id.releas_show);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(mListener !=null){
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
-                            mListener.onItemClick(position);
-                        }
+            itemView.setOnClickListener(view -> {
+                if(mListener !=null){
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION){
+                        mListener.onItemClick(position);
                     }
                 }
             });

@@ -21,11 +21,11 @@ import com.squareup.picasso.Picasso;
 import static com.example.favorite.DetailActivity.EXTRA_MOVIE;
 
 
-public class MovieTvFavAdapter extends RecyclerView.Adapter<MovieTvFavAdapter.MovieTvFavAdapterViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieTvFavAdapterViewHolder> {
     Context context;
     Cursor cursor;
 
-    public MovieTvFavAdapter(Context context) {
+    public MovieAdapter(Context context) {
         this.context = context;
     }
     public void setmMovieTvItems(Cursor movieTvFavItems) {

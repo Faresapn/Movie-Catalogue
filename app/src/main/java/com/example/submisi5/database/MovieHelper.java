@@ -49,12 +49,7 @@ public class MovieHelper {
         database= moviedb.getReadableDatabase();
     }
 
-    public void close() {
-        moviedb.close();
-        if (database.isOpen()){
-            database.close();
-        }
-    }
+
 
     public ArrayList<Items> getAllFilm(){
         ArrayList<Items> movieTvItems = new ArrayList<>();
@@ -81,7 +76,6 @@ public class MovieHelper {
     }
     public Boolean getOne(String name){
         String querySingleRecord = "SELECT * FROM " + DATABASE_TABLE + " WHERE " +DbContract.MovieEntry.COLUMN_JUDUL+ " " + " LIKE " +"'"+name+"'" ;
-//        Cursor cursor = database.query(DATABASE_TABLE,null,"'"+name+"'",null,null,null,null ,null);
         Cursor cursor = database.rawQuery(querySingleRecord,null);
         cursor.moveToFirst();
         Log.d("cursor", String.valueOf(cursor.getCount()));
@@ -91,7 +85,6 @@ public class MovieHelper {
         }else if(cursor.getCount() == 0){
             return false;
         }
-//        cursor.close();
         return false;
     }
 

@@ -77,7 +77,6 @@ public class ShowVM extends AndroidViewModel {
     }
     public void searchtv(String title){
         String URL_SEARCH = searchrl + title;
-        Log.d("APISEARCH",URL_SEARCH);
         JsonObjectRequest mRequest = new JsonObjectRequest(Request.Method.GET, URL_SEARCH, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -93,7 +92,6 @@ public class ShowVM extends AndroidViewModel {
                         String realease = result.getString(  "first_air_date");
                         String rating_bar = result.getString("vote_average"  );
                         String rate = result.getString(      "vote_average"  );
-                        Log.d("title", title);
                         Items items = new Items();
                         items.setTitle_film(title);
                         items.setPhoto(photo);
@@ -101,7 +99,6 @@ public class ShowVM extends AndroidViewModel {
                         items.setDesc_film(realease);
                         items.setRating_bar(rating_bar);
                         items.setRate(rate);
-                        Log.d("title",photo);
                         mitems.add(items);
                     }
                     items.postValue(mitems);

@@ -66,7 +66,6 @@ public class MovieFragment extends Fragment implements Adapter.OnItemClickListen
         movieVM = ViewModelProviders.of(getActivity()).get(MovieVM.class);
         movieVM.getShow().observe(MovieFragment.this, getmMovieTvItems);
         movieVM.getAPI();
-
         RecyclerView recyclerView = v.findViewById(R.id.rv_movie);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
@@ -88,7 +87,6 @@ public class MovieFragment extends Fragment implements Adapter.OnItemClickListen
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-
                     Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
                     Items items = new Items();
                     items.setTitle_film(query);
@@ -100,7 +98,6 @@ public class MovieFragment extends Fragment implements Adapter.OnItemClickListen
                 }
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    //         Toast.makeText(getContext(), newText, Toast.LENGTH_SHORT).show();
 
                     return false;
                 }
@@ -133,7 +130,6 @@ public class MovieFragment extends Fragment implements Adapter.OnItemClickListen
         Items items = new Items();
         String type = "MOVIE";
         items.setPhoto(movieVM.mitems.get(i).getPhoto());
-
         items.setTitle_film(movieVM.mitems.get(i).getTitle_film());
         items.setDesc_film(movieVM.mitems.get(i).getDesc_film());
         items.setInfo_film(movieVM.mitems.get(i).getInfo_film());
@@ -144,8 +140,6 @@ public class MovieFragment extends Fragment implements Adapter.OnItemClickListen
         detail.putExtra(EXTRA_DETAIL, items);
         startActivity(detail);
 
-        //movieVM.mitems.get(i).getInfo_film(), movieVM.mitems.get(i).getTitle_film(), movieVM.mitems.get(i).getDesc_film(),
-        // movieVM.mitems.get(i).getPhoto(),movieVM.mitems.get(i).getRating_bar(),movieVM.mitems.get(i).getRate()
     }
 
 }

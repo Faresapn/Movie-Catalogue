@@ -78,7 +78,6 @@ public class DetailActivity extends AppCompatActivity {
             mMovieTvItems.setRating_bar(movieTvItems.getRating_bar());
             mMovieTvItems.setRate(movieTvItems.getRate());
             mMovieTvItems.setPhoto(movieTvItems.getPhoto());
-            Log.d("savemovie",desc.getText().toString());
             long result = movieHelper.insertMovie(mMovieTvItems);
 
             if(result > 0){
@@ -94,7 +93,6 @@ public class DetailActivity extends AppCompatActivity {
             mMovieTvItems.setRating_bar(movieTvItems.getRating_bar());
             mMovieTvItems.setRate(movieTvItems.getRate());
             mMovieTvItems.setPhoto(movieTvItems.getPhoto());
-            Log.d("savetv",desc.getText().toString());
             long result = mTvHelper.insertTv(mMovieTvItems);
             if(result > 0){
                 Toast.makeText(DetailActivity.this, R.string.add, Toast.LENGTH_SHORT).show();
@@ -104,8 +102,6 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(DetailActivity.this, R.string.addf, Toast.LENGTH_SHORT).show();
             }
         }else if(delete && !act && type.equals("MOVIE")){
-            Log.d("deletemovie",desc.getText().toString());
-
             long result = movieHelper.deleteMovie(movieTvItems.getTitle_film());
             if(result > 0 ){
                 Toast.makeText(DetailActivity.this, R.string.add, Toast.LENGTH_SHORT).show();
@@ -116,7 +112,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         }else if(!delete && !act && type.equals("TV")){
 
-            Log.d("deletetv",desc.getText().toString());
+
             long result = mTvHelper.deleteTv(movieTvItems.getTitle_film());
             if(result > 0 ){
                 Toast.makeText(DetailActivity.this, R.string.add, Toast.LENGTH_SHORT).show();
@@ -131,13 +127,12 @@ public class DetailActivity extends AppCompatActivity {
     private void Type() {
         if(type.equals("MOVIE")  && movieHelper.getOne(name) ){
             //delete movie
-            Log.d("movie test","test");
             act = false;
             delete = true;
             fab.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_is_favorite));
         }else if(type.equals("MOVIE") && !movieHelper.getOne(name)){
             // savemovie
-            Log.d("movie test","test");
+
             act = true;
             insert = true;
             fab.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_not_favorite));
@@ -166,7 +161,6 @@ public class DetailActivity extends AppCompatActivity {
 
         movieTvItems = getIntent().getParcelableExtra(EXTRA_DETAIL);
         type = movieTvItems.getType();
-        Log.d("type",type);
         name = movieTvItems.getTitle_film();
     }
 

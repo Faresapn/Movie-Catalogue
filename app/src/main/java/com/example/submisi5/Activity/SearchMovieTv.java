@@ -34,11 +34,11 @@ public class SearchMovieTv extends AppCompatActivity implements Adapter.OnItemCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_movie_tv);
-        settoolbar();
-        setintentdetail();
+        toolbar();
+        detail();
         setsearchmovietv(query);
     }
-    void settoolbar(){
+    void toolbar(){
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -65,11 +65,11 @@ public class SearchMovieTv extends AppCompatActivity implements Adapter.OnItemCl
         }
 
 
-        mRecyclerView = findViewById(R.id.recycler_search);
+        mRecyclerView = findViewById(R.id.rv_search);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(SearchMovieTv.this,RecyclerView.VERTICAL,false));
         mRecyclerView.setAdapter(adapter);
     }
-    void setintentdetail(){
+    void detail(){
         movieTvItems = new Items();
         movieTvItems = getIntent().getParcelableExtra(EXTRA_SEARCH);
         query = movieTvItems.getTitle_film();

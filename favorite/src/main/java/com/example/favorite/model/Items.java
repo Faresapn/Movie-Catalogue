@@ -13,9 +13,6 @@ public class Items implements Parcelable {
     int id;
     String  Desc_film,Title_film,Info_film,photo,Rating_bar,Rate, type;
 
-    public Items() {
-
-    }
 
 
 

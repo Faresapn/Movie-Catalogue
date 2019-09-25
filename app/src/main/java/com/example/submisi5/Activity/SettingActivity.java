@@ -1,32 +1,23 @@
 package com.example.submisi5.Activity;
 
-import androidx.annotation.RequiresApi;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.preference.Preference;
+
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-
 import com.example.submisi5.R;
-import com.example.submisi5.notif.daily_reciever;
-import com.example.submisi5.notif.release_reciever;
+import com.example.submisi5.alarm.ReminderActivity;
+import static com.example.submisi5.alarm.ReminderActivity.IS_DAILY_REMINDER;
+import static com.example.submisi5.alarm.ReminderActivity.IS_RELEASE_REMINDER;
 
-import static com.example.submisi5.utils.Constants.IS_DAILY_REMINDER;
-import static com.example.submisi5.utils.Constants.IS_RELEASE_REMINDER;
-
-
-
-public class SettingsActivity extends AppCompatActivity {
-    static release_reciever release_reciever;
-    static daily_reciever daily_receiver;
-
+public class SettingActivity extends AppCompatActivity  {
+    static ReminderActivity reminderActivity,daily_receiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
         settoolbar();
     }
 
+
     private void settoolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar_setting);
 
@@ -52,50 +44,48 @@ public class SettingsActivity extends AppCompatActivity {
 
         toolbar.setNavigationOnClickListener(view -> {
             onBackPressed();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
         });
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
-        SwitchPreferenceCompat release, daily;
+        SwitchPreferenceCompat release,daily;
         SharedPreferences SP;
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.root_preferences, rootKey);
+            setPreferencesFromResource(R.xml.preferences, rootKey);
             SP = getActivity().getPreferences(0);
-            release = findPreference(getResources().getString(R.string.release_notif));
+            release = findPreference(getResources().getString(R.string.rilis_notif));
             daily = findPreference(getResources().getString(R.string.daily_notif));
             release.setOnPreferenceClickListener(preference -> {
-                if (release.isChecked()) {
-                    //Toast.makeText(getContext(), "CHECKED", Toast.LENGTH_SHORT).show();
-                    SharedPreferences.Editor editor = SP.edit();
-                    editor.putBoolean(IS_RELEASE_REMINDER, true);
+                if (release.isChecked()){
+                    SharedPreferences.Editor editor =SP.edit();
+                    editor.putBoolean(IS_RELEASE_REMINDER,true);
                     editor.apply();
-                    release_reciever = new release_reciever();
-                    release_reciever.release_setalarmmanager(getContext());
-                } else if (!release.isChecked()) {
-                    SharedPreferences.Editor editor = SP.edit();
-                    editor.putBoolean(IS_RELEASE_REMINDER, false);
+                    reminderActivity = new ReminderActivity();
+                    reminderActivity.release_setalarmmanager(getContext());
+                }else if (!release.isChecked()){
+                    SharedPreferences.Editor editor =SP.edit();
+                    editor.putBoolean(IS_RELEASE_REMINDER,false);
                     editor.apply();
-                    release_reciever = new release_reciever();
-                    release_reciever.release_setcancel(getContext());
+                    reminderActivity = new ReminderActivity();
+                    reminderActivity.release_setcancel(getContext());
                 }
                 return false;
             });
             daily.setOnPreferenceClickListener(preference -> {
-                if (daily.isChecked()) {
-                    //  Toast.makeText(getContext(), "CHECKED", Toast.LENGTH_SHORT).show();
-                    SharedPreferences.Editor editor = SP.edit();
-                    editor.putBoolean(IS_DAILY_REMINDER, true);
+                if (daily.isChecked()){
+                    SharedPreferences.Editor editor =SP.edit();
+                    editor.putBoolean(IS_DAILY_REMINDER,true);
                     editor.apply();
-                    daily_receiver = new daily_reciever();
+                    daily_receiver = new ReminderActivity();
                     daily_receiver.daily_setalarmmanager(getContext());
-                } else if (!daily.isChecked()) {
-                    SharedPreferences.Editor editor = SP.edit();
-                    editor.putBoolean(IS_DAILY_REMINDER, false);
+                }else if (!daily.isChecked()){
+                    SharedPreferences.Editor editor =SP.edit();
+                    editor.putBoolean(IS_DAILY_REMINDER,false);
                     editor.apply();
-                    daily_receiver = new daily_reciever();
+                    daily_receiver = new ReminderActivity();
                     daily_receiver.daily_setcancel(getContext());
                 }
                 return false;
@@ -103,6 +93,5 @@ public class SettingsActivity extends AppCompatActivity {
 
         }
     }
-
 
 }

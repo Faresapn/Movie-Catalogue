@@ -11,13 +11,11 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
+
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.submisi5.R;
-import com.example.submisi5.adapter.Adapter;
-import com.example.submisi5.fragment.MovieFragment;
+
 import com.example.submisi5.model.Items.Items;
 
 
@@ -44,17 +42,14 @@ public class MovieVM extends AndroidViewModel {
 
 
     public void getAPI() {
-
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
             try {
                 JSONArray jsonArray = response.getJSONArray("results");
                 int length = jsonArray.length();
                 for (int i = 0; i < length; i++) {
                     JSONObject result = jsonArray.getJSONObject(i);
-
                     String title = result.getString    ("title");
                     String photo = result.getString   ("poster_path");
-
                     String overview = result.getString("overview");
                     String realease = result.getString("release_date");
                     String rating_bar = result.getString("vote_average");
@@ -63,13 +58,11 @@ public class MovieVM extends AndroidViewModel {
                     Items items = new Items();
                     items.setTitle_film(title);
                     items.setPhoto(photo);
-
                     items.setInfo_film(overview);
                     items.setDesc_film(realease);
                     items.setRating_bar(rating_bar);
                     items.setRate(rate);
                     mitems.add(items);
-                //realease,title,overview,photo,rating_bar,rate
                 }
 
                 items.postValue(mitems);
@@ -82,7 +75,6 @@ public class MovieVM extends AndroidViewModel {
     }
     public void searchmovie(String tittle){
         String URL_SEARCH = searchrl + tittle;
-        Log.d("APISEARCH",URL_SEARCH);
         JsonObjectRequest mRequest = new JsonObjectRequest(Request.Method.GET, URL_SEARCH, null, response -> {
             try {
                 JSONArray jsonArray = response.getJSONArray("results");
@@ -102,13 +94,9 @@ public class MovieVM extends AndroidViewModel {
                     items.setDesc_film(realease);
                     items.setRating_bar(rating_bar);
                     items.setRate(rate);
-                    Log.d("title",photo);
                     mitems.add(items);
-
-
                 }
                 items.postValue(mitems);
-                Log.d("tes", String.valueOf(mitems));
             } catch (JSONException ex) {
                 ex.printStackTrace();
             }
@@ -117,7 +105,6 @@ public class MovieVM extends AndroidViewModel {
     }
 
     public LiveData<ArrayList<Items>> getShow() {
-
         return items;
     }
 }

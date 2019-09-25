@@ -1,6 +1,6 @@
 package com.example.favorite;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -25,24 +25,23 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(monNavigationItemSelectedListener);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        moveFragment(new Favorit_FilmFragment());
+        if (savedInstanceState == null) {
+            navigation.setSelectedItemId(R.id.fav_movie);
+        }
     }
     private BottomNavigationView.OnNavigationItemSelectedListener monNavigationItemSelectedListener
             = menuItem -> {
 
                 switch (menuItem.getItemId()) {
-                    case R.id.favorite_mv:
+                    case R.id.fav_movie:
                         moveFragment(new Favorit_FilmFragment());
                         break;
 
-                    case R.id.favorite_tv:
+                    case R.id.fav_tv:
 
                         moveFragment(new Favorit_ShowFragment());
                         break;
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     void moveFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container_layout, fragment);
+        fragmentTransaction.replace(R.id.main_layout, fragment);
         fragmentTransaction.commit();
     }
 

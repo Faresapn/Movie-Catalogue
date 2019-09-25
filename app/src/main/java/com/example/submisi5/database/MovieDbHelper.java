@@ -23,7 +23,6 @@ public class MovieDbHelper extends SQLiteOpenHelper {
                     "%s TEXT NOT NULL UNIQUE,"+
                     "%s TEXT NOT NULL UNIQUE,"+
                     "%s TEXT NOT NULL UNIQUE,"+
-
                     "%s TEXT NOT NULL UNIQUE,"+
                     "%s TEXT NOT NULL UNIQUE,"+
                     "%s TEXT NOT NULL UNIQUE)",
@@ -31,7 +30,6 @@ public class MovieDbHelper extends SQLiteOpenHelper {
             DbContract.MovieEntry._ID        ,
             DbContract.MovieEntry.COLUMN_JUDUL     ,
             DbContract.MovieEntry.COLUMN_POSTER    ,
-
             DbContract.MovieEntry.COLUMN_OVERVIEW  ,
             DbContract.MovieEntry.COLUMN_RELEASE  ,
             DbContract.MovieEntry.COLUMN_RATING,
@@ -43,19 +41,17 @@ public class MovieDbHelper extends SQLiteOpenHelper {
                     "%s TEXT NOT NULL UNIQUE,"+
                     "%s TEXT NOT NULL UNIQUE,"+
                     "%s TEXT NOT NULL UNIQUE,"+
-
                     "%s TEXT NOT NULL UNIQUE,"+
                     "%s TEXT NOT NULL UNIQUE,"+
                     "%s TEXT NOT NULL UNIQUE)",
-            DbContract.TABLE_TV,
-            DbContract.TvEntry._ID        ,
-            DbContract.TvEntry.COLUMN_JUDUL     ,
-            DbContract.TvEntry.COLUMN_POSTER    ,
-
-            DbContract.TvEntry.COLUMN_OVERVIEW  ,
-            DbContract.TvEntry.COLUMN_RELEASE  ,
-            DbContract.TvEntry.COLUMN_RATING,
-            DbContract.TvEntry.COLUMN_RATINGBAR
+            DbTvContract.TABLE_TV,
+            DbTvContract.TvEntry._ID        ,
+            DbTvContract.TvEntry.COLUMN_JUDUL     ,
+            DbTvContract.TvEntry.COLUMN_POSTER    ,
+            DbTvContract.TvEntry.COLUMN_OVERVIEW  ,
+            DbTvContract.TvEntry.COLUMN_RELEASE  ,
+            DbTvContract.TvEntry.COLUMN_RATING,
+            DbTvContract.TvEntry.COLUMN_RATINGBAR
 
     );
     @Override
@@ -63,11 +59,10 @@ public class MovieDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE_MOVIE);
         db.execSQL(SQL_CREATE_TABLE_TV);
     }
-    //bertanggung jwb untuk memastikan skema database selalu deperbaharui
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int ii) {
         db.execSQL("DROP TABLE IF EXISTS " + DbContract.TABLE_MOVIE);
-        db.execSQL("DROP TABLE IF EXISTS " + DbContract.TABLE_TV);
+        db.execSQL("DROP TABLE IF EXISTS " + DbTvContract.TABLE_TV);
         onCreate(db);
     }
 
