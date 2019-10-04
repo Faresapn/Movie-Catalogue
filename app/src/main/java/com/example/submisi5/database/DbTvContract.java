@@ -23,7 +23,5 @@ public class DbTvContract {
                 .build();
 
     }
-    public static String getColoumnString(Cursor cursor, String coloumn_name){
-        return cursor.getString(cursor.getColumnIndex(coloumn_name));
-    }
+
 }

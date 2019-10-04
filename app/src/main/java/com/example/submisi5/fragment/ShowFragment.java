@@ -7,13 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,6 +32,7 @@ import com.example.submisi5.model.Items.Items;
 import com.example.submisi5.model.tv.ShowVM;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static com.example.submisi5.Activity.DetailActivity.EXTRA_DETAIL;
 import static com.example.submisi5.Activity.SearchMovieTv.EXTRA_SEARCH;
@@ -51,7 +53,7 @@ public class ShowFragment extends Fragment implements Adapter.OnItemClickListene
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_show, container, false);
@@ -60,7 +62,7 @@ public class ShowFragment extends Fragment implements Adapter.OnItemClickListene
         adapter = new Adapter(getContext());
         adapter.SetOnItemClickListener(ShowFragment.this);
         adapter.notifyDataSetChanged();
-        showVM = ViewModelProviders.of(getActivity()).get(ShowVM.class);
+        showVM = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(ShowVM.class);
         showVM.getmTvItems().observe(ShowFragment.this, getmMovieTvItems);
         showVM.getAPI();
         RecyclerView mRecyclerView = v.findViewById(R.id.rv_show);
@@ -70,11 +72,11 @@ public class ShowFragment extends Fragment implements Adapter.OnItemClickListene
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
         inflater.inflate(R.menu.main_menu, menu);
-        SearchManager sm = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        SearchManager sm = (SearchManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SEARCH_SERVICE);
         if (sm != null) {
             SearchView sv = (SearchView) (menu.findItem(R.id.action_search)).getActionView();
             sv.setSearchableInfo(sm.getSearchableInfo(getActivity().getComponentName()));

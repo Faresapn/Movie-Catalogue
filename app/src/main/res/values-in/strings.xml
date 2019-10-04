@@ -15,4 +15,10 @@
     <string name="fvtv">Tv disukai</string>
     <string name="fvflm">Film Disukai</string>
     <string name="touch">tekan</string>
+    <string name="notification_setting">atur notifikasi</string>
+    <string name="release_notif">pengingat jadwal rilis</string>
+    <string name="reminder_release"> tayangan rilis hari ini</string>
+    <string name="daily_notif">pengingat harian</string>
+    <string name="reminder_daily">mengingatkan untuk membuka aplikasi</string>
+    <string name="daili">ayo buka aplikasi kembali</string>
 </resources>

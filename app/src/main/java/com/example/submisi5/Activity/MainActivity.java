@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        moveFragment(new MovieFragment());
+        if (savedInstanceState == null) {
+            navigation.setSelectedItemId(R.id.film);
+        }
     }
     private BottomNavigationView.OnNavigationItemSelectedListener monNavigationItemSelectedListener
             = menuItem -> {
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             startActivity(mIntent);
 
         }else if (id == R.id.notification_setting){
-            startActivity(new Intent(MainActivity.this, SettingActivity.class));
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

@@ -9,16 +9,10 @@ import com.example.submisi5.database.DbContract;
 import static com.example.submisi5.database.DbContract.getColoumnString;
 
 public class ItemsWidget implements Parcelable {
-    String type,title,photo,overview;
-    int id;
+     private  String title,photo;
+    private int id;
 
-    public String getType() {
-        return type;
-    }
 
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getTitle() {
         return title;
@@ -36,13 +30,7 @@ public class ItemsWidget implements Parcelable {
         this.photo = photo;
     }
 
-    public String getOverview() {
-        return overview;
-    }
 
-    public void setOverview(String overview) {
-        this.overview = overview;
-    }
 
     public int getId() {
         return id;
@@ -59,24 +47,20 @@ public class ItemsWidget implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.type);
+
         dest.writeString(this.title);
         dest.writeString(this.photo);
-        dest.writeString(this.overview);
         dest.writeInt(this.id);
     }
 
     public ItemsWidget(Cursor cursor) {
         this.title = getColoumnString(cursor, DbContract.MovieEntry.COLUMN_JUDUL);
         this.photo = getColoumnString(cursor, DbContract.MovieEntry.COLUMN_POSTER);
-        this.overview = getColoumnString(cursor, DbContract.MovieEntry.COLUMN_OVERVIEW);
     }
 
-    protected ItemsWidget(Parcel in) {
-        this.type = in.readString();
+     protected ItemsWidget(Parcel in) {
         this.title = in.readString();
         this.photo = in.readString();
-        this.overview = in.readString();
         this.id = in.readInt();
     }
 

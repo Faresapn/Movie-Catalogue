@@ -1,16 +1,17 @@
 package com.example.submisi5.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,6 @@ import com.example.submisi5.adapter.Adapter;
 import com.example.submisi5.database.MovieHelper;
 import com.example.submisi5.model.Items.Items;
 import com.example.submisi5.model.LoadCallback;
-import com.example.submisi5.model.movie.MovieVM;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -34,23 +34,21 @@ import static com.example.submisi5.Activity.DetailActivity.EXTRA_DETAIL;
  * A simple {@link Fragment} subclass.
  */
 public class Favorit_FilmFragment extends Fragment implements LoadCallback, Adapter.OnItemClickListener {
-    Adapter adapter;
-    ProgressBar mProgressBar;
-    MovieHelper mMovieHelper;
-    ArrayList<Items>mListFav = new ArrayList<>();
+    private Adapter adapter;
+    private ProgressBar mProgressBar;
+    private ArrayList<Items>mListFav = new ArrayList<>();
     public Favorit_FilmFragment() {
-        // Required empty public constructor
+
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_favorit__film, container, false);
         mProgressBar = v.findViewById(R.id.loading_film);
         RecyclerView mRecyclerView = v.findViewById(R.id.rv_movie);
-        mMovieHelper = MovieHelper.getInstance(getContext());
+        MovieHelper mMovieHelper = MovieHelper.getInstance(getContext());
         mMovieHelper.open();
         adapter = new Adapter(getContext());
         adapter.SetOnItemClickListener(Favorit_FilmFragment.this);
@@ -92,10 +90,11 @@ public class Favorit_FilmFragment extends Fragment implements LoadCallback, Adap
         startActivity(detail);
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class LoadMovieAsync  extends AsyncTask<Void, Void, ArrayList<Items>> {
         WeakReference<MovieHelper> movieHelperWeakReference;
         WeakReference<LoadCallback>loadCallbackWeakReference;
-        public LoadMovieAsync(MovieHelper mMovieHelper, LoadCallback context) {
+        LoadMovieAsync(MovieHelper mMovieHelper, LoadCallback context) {
             movieHelperWeakReference = new WeakReference<>(mMovieHelper);
             loadCallbackWeakReference = new WeakReference<>(context);
         }

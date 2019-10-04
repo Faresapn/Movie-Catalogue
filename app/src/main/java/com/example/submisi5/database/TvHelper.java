@@ -1,5 +1,6 @@
 package com.example.submisi5.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -28,7 +29,7 @@ public class TvHelper  {
     private static TvHelper INSTANCE;
     private static SQLiteDatabase database;
 
-    public TvHelper(Context context) {
+    private TvHelper(Context context) {
         databaseHelper = new MovieDbHelper(context);
         database = databaseHelper.getWritableDatabase();
 
@@ -76,7 +77,7 @@ public class TvHelper  {
     }
     public Boolean getOne(String name){
         String querySingleRecord = "SELECT * FROM " + DATABASE_TABLE + " WHERE " +DbTvContract.TvEntry.COLUMN_JUDUL+ " " + " LIKE " +"'"+name+"'" ;
-        Cursor cursor = database.rawQuery(querySingleRecord,null);
+        @SuppressLint("Recycle") Cursor cursor = database.rawQuery(querySingleRecord,null);
         cursor.moveToFirst();
         Log.d("cursor", String.valueOf(cursor.getCount()));
         if (cursor.getCount() > 0 ){
@@ -109,12 +110,6 @@ public class TvHelper  {
     }
     public long insertProvider(ContentValues values){
         return database.insert(DATABASE_TABLE,null,values);
-    }
-    public int updateProvider(String id,ContentValues values){
-        return database.update(DATABASE_TABLE,values, DbTvContract.TvEntry._ID + " = ?",new String[]{id});
-    }
-    public int deleteProvider(String id){
-        return database.delete(DATABASE_TABLE, DbTvContract.TvEntry._ID+ " = ?",new String[]{id});
     }
 }
 

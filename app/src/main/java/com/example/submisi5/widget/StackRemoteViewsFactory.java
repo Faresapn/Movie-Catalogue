@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.widget.RemoteViews;
+
 import android.widget.RemoteViewsService;
 
 import com.bumptech.glide.Glide;

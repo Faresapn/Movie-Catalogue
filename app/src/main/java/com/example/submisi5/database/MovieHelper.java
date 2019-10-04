@@ -1,5 +1,6 @@
 package com.example.submisi5.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -26,7 +27,7 @@ public class MovieHelper {
     private static SQLiteDatabase database;
 
 
-    public MovieHelper(Context context) {
+    private MovieHelper(Context context) {
 
         moviedb = new MovieDbHelper(context);
         database = moviedb.getWritableDatabase();
@@ -76,7 +77,7 @@ public class MovieHelper {
     }
     public Boolean getOne(String name){
         String querySingleRecord = "SELECT * FROM " + DATABASE_TABLE + " WHERE " +DbContract.MovieEntry.COLUMN_JUDUL+ " " + " LIKE " +"'"+name+"'" ;
-        Cursor cursor = database.rawQuery(querySingleRecord,null);
+        @SuppressLint("Recycle") Cursor cursor = database.rawQuery(querySingleRecord,null);
         cursor.moveToFirst();
         Log.d("cursor", String.valueOf(cursor.getCount()));
         if (cursor.getCount() > 0 ){

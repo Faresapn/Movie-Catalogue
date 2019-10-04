@@ -19,17 +19,20 @@
     <PreferenceCategory>
 
         <SwitchPreferenceCompat
-            app:key="@string/daili"
-            app:title="@string/daili"
-            app:summary="Reminder to show movie release today"
-            />
+            app:key="@string/release_notif"
+            app:title="@string/release_notif"
+
+            app:summary="@string/reminder_release"
+            app:theme="@style/setting"/>
+
 
         <SwitchPreferenceCompat
 
-            app:key="@string/rilis"
-            app:title="@string/rilis"
-            app:summary="Reminder to show movie release today"
-           />
+            app:key="@string/daily_notif"
+            app:title="@string/daily_notif"
+            app:summary="@string/reminder_daily"
+            app:theme="@style/setting"
+            />
 
     </PreferenceCategory>
 

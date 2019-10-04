@@ -21,7 +21,6 @@ import java.util.ArrayList;
 public class Adapter  extends RecyclerView.Adapter<Adapter.CategoryViewHolder> {
     private Context context;
     private ArrayList<Items> mList = new ArrayList<>();
-    View v;
     private  OnItemClickListener mListener;
 
 
@@ -53,7 +52,7 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.CategoryViewHolder> {
 
     //ViewHolder
     @Override
-    public void onBindViewHolder(CategoryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Items items = mList.get(position);
         Log.d("adapter", items.getTitle_film());
         holder.mTextView1.setText(items.getTitle_film());
@@ -63,13 +62,13 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.CategoryViewHolder> {
 
     }
 
-    public class CategoryViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mImageView;
-        public TextView mTextView1;
-        public TextView mTextView2;
+    class CategoryViewHolder extends RecyclerView.ViewHolder {
+        ImageView mImageView;
+        TextView mTextView1;
+        TextView mTextView2;
 
 
-        public CategoryViewHolder(@NonNull View itemView) {
+        CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.item_movie_poster);
             mTextView1 = itemView.findViewById(R.id.item_movie_title);
@@ -89,9 +88,10 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.CategoryViewHolder> {
     }
 
 
+    @NonNull
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        v = LayoutInflater.from(context).inflate(R.layout.item, viewGroup, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item, viewGroup, false);
         return new CategoryViewHolder(v);
     }
 }

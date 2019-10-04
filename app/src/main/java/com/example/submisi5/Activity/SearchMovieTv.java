@@ -34,19 +34,11 @@ public class SearchMovieTv extends AppCompatActivity implements Adapter.OnItemCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_movie_tv);
-        toolbar();
+
         detail();
         setsearchmovietv(query);
     }
-    void toolbar(){
-        Toolbar toolbar = findViewById(R.id.toolbar);
 
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
-        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
-        toolbar.setNavigationOnClickListener(view -> onBackPressed());
-    }
     void setsearchmovietv(String title){
         mProgressBar = findViewById(R.id.progress_search);
         mProgressBar.setVisibility(View.VISIBLE);

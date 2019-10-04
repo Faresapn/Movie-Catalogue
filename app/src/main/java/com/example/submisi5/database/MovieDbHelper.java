@@ -4,17 +4,14 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by root on 30/01/18.
- */
 
 public class MovieDbHelper extends SQLiteOpenHelper {
 
-    public static String DATABASE_NAME = "dbmovietv";
+    private static String DATABASE_NAME = "dbmovietv";
 
     private static final int DATABASE_VERSION = 1;
 
-    public MovieDbHelper(Context context) {
+    MovieDbHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
     }
 
@@ -61,7 +58,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int ii) {
-        db.execSQL("DROP TABLE IF EXISTS " + DbContract.TABLE_MOVIE);
+            db.execSQL("DROP TABLE IF EXISTS " + DbContract.TABLE_MOVIE);
         db.execSQL("DROP TABLE IF EXISTS " + DbTvContract.TABLE_TV);
         onCreate(db);
     }

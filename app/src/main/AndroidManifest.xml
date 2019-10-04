@@ -31,13 +31,12 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/favorite_widget_info" />
         </receiver>
-
+        <activity
+            android:name=".Activity.SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.SearchMovieTv"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.SettingActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
 
         <provider
             android:name=".provider.Provider"
@@ -51,8 +50,7 @@
 
         </activity>
 
-        <receiver android:name=".alarm.ReminderActivity" />
-        <receiver android:name=".alarm.ReminderActivity"/>
+        <receiver android:name=".alarm.AlarmManager"/>
 
         <service
             android:name=".widget.WidgetService"

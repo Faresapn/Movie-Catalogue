@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -30,6 +31,7 @@ import com.example.submisi5.model.Items.Items;
 import com.example.submisi5.model.movie.MovieVM;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static com.example.submisi5.Activity.DetailActivity.EXTRA_DETAIL;
 import static com.example.submisi5.Activity.SearchMovieTv.EXTRA_SEARCH;
@@ -40,46 +42,40 @@ import static com.example.submisi5.Activity.SearchMovieTv.EXTRA_SEARCH;
  */
 public class MovieFragment extends Fragment implements Adapter.OnItemClickListener {
 
-    Adapter adapter;
-    MovieVM movieVM;
-    ProgressBar mProgressBar;
+    private Adapter adapter;
+    private MovieVM movieVM;
+    private ProgressBar mProgressBar;
     public MovieFragment() {
-        // Required empty public constructor
+
     }
 
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_movie, container, false);
         setHasOptionsMenu(true);
         mProgressBar = v.findViewById(R.id.loading_film);
-
-
-
         adapter = new Adapter(getContext());
         adapter.SetOnItemClickListener(MovieFragment.this);
         adapter.notifyDataSetChanged();
-
-        movieVM = ViewModelProviders.of(getActivity()).get(MovieVM.class);
+        movieVM = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(MovieVM.class);
         movieVM.getShow().observe(MovieFragment.this, getmMovieTvItems);
         movieVM.getAPI();
         RecyclerView recyclerView = v.findViewById(R.id.rv_movie);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
-
         return v;
     }
 
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
         inflater.inflate(R.menu.main_menu,menu);
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SEARCH_SERVICE);
         if(searchManager != null){
             SearchView searchView = (SearchView) (menu.findItem(R.id.action_search)).getActionView();
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
@@ -101,18 +97,11 @@ public class MovieFragment extends Fragment implements Adapter.OnItemClickListen
 
                     return false;
                 }
-
-
             });
 
         }
 
     }
-
-
-
-
-
      private Observer<? super ArrayList<Items>> getmMovieTvItems = new Observer<ArrayList<Items>>() {
         @Override
         public void onChanged(ArrayList<Items> movieTvItems) {

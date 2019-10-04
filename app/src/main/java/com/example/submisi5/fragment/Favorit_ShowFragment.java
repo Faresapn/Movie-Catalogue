@@ -1,15 +1,16 @@
 package com.example.submisi5.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,23 +34,22 @@ import static com.example.submisi5.Activity.DetailActivity.EXTRA_DETAIL;
  */
 public class Favorit_ShowFragment extends Fragment implements LoadCallback, Adapter.OnItemClickListener {
 
-    Adapter adapter;
-    ProgressBar mProgressBar;
-    TvHelper mTvHelper;
-    ArrayList<Items> mListFav = new ArrayList<>();
+    private Adapter adapter;
+    private ProgressBar mProgressBar;
+    private ArrayList<Items> mListFav = new ArrayList<>();
     public Favorit_ShowFragment() {
         // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =   inflater.inflate(R.layout.fragment_favorit__show, container, false);
         mProgressBar = v.findViewById(R.id.loading_show);
         RecyclerView mRecyclerView = v.findViewById(R.id.rv_show);
-        mTvHelper = TvHelper.getInstance(getContext());
+        TvHelper mTvHelper = TvHelper.getInstance(getContext());
         mTvHelper.open();
         adapter = new Adapter(getContext());
         adapter.SetOnItemClickListener(Favorit_ShowFragment.this);
@@ -86,10 +86,11 @@ public class Favorit_ShowFragment extends Fragment implements LoadCallback, Adap
         detail.putExtra(EXTRA_DETAIL,movieTv_items);
         startActivity(detail);
     }
+    @SuppressLint("StaticFieldLeak")
     public class LoadtvAsync extends AsyncTask<Void, Void, ArrayList<Items>> {
         WeakReference<TvHelper> tvHelperWeakReference;
         WeakReference<LoadCallback>loadCallbackWeakReference;
-        public LoadtvAsync(TvHelper mTvHelper,  LoadCallback context) {
+        LoadtvAsync(TvHelper mTvHelper, LoadCallback context) {
             tvHelperWeakReference = new WeakReference<>(mTvHelper);
             loadCallbackWeakReference = new WeakReference<>(context);
         }

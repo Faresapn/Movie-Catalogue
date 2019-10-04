@@ -8,13 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.SearchMovieTv"
     android:orientation="vertical">
-    <androidx.appcompat.widget.Toolbar
 
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </androidx.appcompat.widget.Toolbar>
     <ProgressBar
         android:id="@+id/progress_search"
         android:layout_width="wrap_content"

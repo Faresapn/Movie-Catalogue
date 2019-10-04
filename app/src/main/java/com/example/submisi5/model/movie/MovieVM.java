@@ -69,7 +69,7 @@ public class MovieVM extends AndroidViewModel {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> error.printStackTrace()
+        }, Throwable::printStackTrace
         );
         rq.add(request);
     }
@@ -100,7 +100,7 @@ public class MovieVM extends AndroidViewModel {
             } catch (JSONException ex) {
                 ex.printStackTrace();
             }
-        }, error -> error.printStackTrace());
+        }, Throwable::printStackTrace);
         rq.add(mRequest);
     }
 

@@ -12,9 +12,8 @@
     <string name="api_release" translatable="false">https://api.themoviedb.org/3/discover/movie?api_key=63f4eee64048ee279dfc3eb12f7ed4f2&amp;language=en-US&amp;primary_release_date.gte=%1$s&amp;primary_release_date.lte=%2$s</string>
 
     <string name="search_">Search </string>
-   <string name="daily_notif">Good Morning , lets go check the application</string>
-    <string name="rilis_notif">Good Morning , in today release many film check please</string>
-    <string name="daili">Turn On/ Off Daily Reminder</string>
+
+    <string name="daili">lets back to application</string>
     <string name="rilis">Turn On/ Off Release Reminder</string>
 
     <string name="add">Success</string>
@@ -35,9 +34,10 @@
     <string name="search">Search</string>
 
     <string name="t">tittle</string>
+
+    <string name="release_notif">Release Reminder</string>
+    <string name="reminder_release"> Movie Release Today</string>
+    <string name="daily_notif">Daily Reminder</string>
+    <string name="reminder_daily">Return To App</string>
     <string name="notification_setting">notification setting</string>
-    <string name="turn_on_off_daily_reminder">Turn On/Off Daily Reminder</string>
-    <string name="turn_on_off_release_reminder">Turn On/Off release reminder</string>
-
-
 </resources>

@@ -11,8 +11,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.submisi5.R;
@@ -71,42 +69,39 @@ public class ShowVM extends AndroidViewModel {
             }catch (JSONException e){
                 e.printStackTrace();
             }
-        }, error -> error.printStackTrace()
+        }, Throwable::printStackTrace
         );
         rq.add(request);
     }
     public void searchtv(String title){
         String URL_SEARCH = searchrl + title;
-        JsonObjectRequest mRequest = new JsonObjectRequest(Request.Method.GET, URL_SEARCH, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonArray = response.getJSONArray("results");
-                    int length = jsonArray.length();
-                    for(int i = 0;i<length;i++){
-                        JSONObject result = jsonArray.getJSONObject(i);
+        JsonObjectRequest mRequest = new JsonObjectRequest(Request.Method.GET, URL_SEARCH, null, response -> {
+            try {
+                JSONArray jsonArray = response.getJSONArray("results");
+                int length = jsonArray.length();
+                for(int i = 0;i<length;i++){
+                    JSONObject result = jsonArray.getJSONObject(i);
 
-                        String title = result.getString(     "original_name"  );
-                        String photo = result.getString(     "poster_path"   );
-                        String overview = result.getString(  "overview"      );
-                        String realease = result.getString(  "first_air_date");
-                        String rating_bar = result.getString("vote_average"  );
-                        String rate = result.getString(      "vote_average"  );
-                        Items items = new Items();
-                        items.setTitle_film(title);
-                        items.setPhoto(photo);
-                        items.setInfo_film(overview);
-                        items.setDesc_film(realease);
-                        items.setRating_bar(rating_bar);
-                        items.setRate(rate);
-                        mitems.add(items);
-                    }
-                    items.postValue(mitems);
-                } catch (JSONException ex) {
-                    ex.printStackTrace();
+                    String title1 = result.getString(     "original_name"  );
+                    String photo = result.getString(     "poster_path"   );
+                    String overview = result.getString(  "overview"      );
+                    String realease = result.getString(  "first_air_date");
+                    String rating_bar = result.getString("vote_average"  );
+                    String rate = result.getString(      "vote_average"  );
+                    Items items = new Items();
+                    items.setTitle_film(title1);
+                    items.setPhoto(photo);
+                    items.setInfo_film(overview);
+                    items.setDesc_film(realease);
+                    items.setRating_bar(rating_bar);
+                    items.setRate(rate);
+                    mitems.add(items);
                 }
+                items.postValue(mitems);
+            } catch (JSONException ex) {
+                ex.printStackTrace();
             }
-        }, error -> error.printStackTrace());
+        }, Throwable::printStackTrace);
         rq.add(mRequest);
     }
     public LiveData<ArrayList<Items>> getmTvItems() {
